@@ -1,5 +1,7 @@
 # ATS SPC - Groupe B - Dispositif 1
 
-* Abdulkader
-* Amare
-* Mohamad
+## Authors
+
+* KALAAJI Abdulkader
+* NIGHATU Amare
+* ABOU ALNASSER Mohamad
