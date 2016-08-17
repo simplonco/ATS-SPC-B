@@ -2,6 +2,6 @@
 
 ## Authors
 
-* KALAAJI Abdulkader
-* NIGHATU Amare
-* ABOU ALNASSER Mohamad
+- KALAAJI Abdulkader
+- NIGHATU Amare
+- ABOU ALNASSER Mohamad
