@@ -1,15 +1,14 @@
-div#page{
-  margin-left: 60px;
-  margin-top: 60px;
-       }
-h1{
-
-  color: green;
-  font-size: 70px;
+div#page {
+    margin-left: 60px;
+    margin-top: 60px;
 }
-h2{
-  font-size: 30px;
+h1 {
+    color: green;
+    font-size: 70px;
 }
-ul{
-  margin-top: 60px;
+h2 {
+    font-size: 30px;
+}
+ul {
+    margin-top: 60px;
 }
