@@ -12,69 +12,74 @@
 </head>
 <body>
   <?php
-	if(isset($_POST['Validate'])){
-		$user_id=$_POST["user_id"];
-        $errors =array();
-		if (empty($user_id)) {
-			$errors[]="ALL Fields requierd";
-		}
-		else{
-		include 'conn.php';
-		$sql ="INSERT INTO checkins(user_id) VALUES (?)";
-		$stmt=$conn->prepare($sql);
-		$stmt->bindParam(1,$user_id,PDO::PARAM_STR);
-		$stmt->execute();
-		$success = "the user is add";
-		}
-	}
+  if(isset($_POST['Validate'])){
+    $passcode = $_POST["passcode"];
+    $errors = array();
+    if (empty($passcode)) {
+      $errors[] = "ALL Fields requierd";
+    } else {
+      include 'conn.php';
+      $sql = "SELECT * FROM users WHERE passcode = $passcode";
+      $stmt = $conn->query($sql);
+      $user_id = 0;
+      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $user_id = $row["id"];
+      }
+
+      if ($user_id == 0) {
+        $errors[] = "The user id is wrong";
+      } else {
+        $sqle ="INSERT INTO checkins(user_id) VALUES (?)";
+    		$stmt=$conn->prepare($sqle);
+    		$stmt->bindParam(1,$user_id,PDO::PARAM_STR);
+    		$stmt->execute();
+        $success = "the user id is ".$user_id;
+      }
+    }
+  }
 ?>
-  <div id="page">
+<div id="page">
   <div id="page_header">
     <h1>Projet SPC</h1>
-<h2>(Suivi de Présence du Collaborateur)</h2>
-</div>
-<ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-  <li role="presentation"><a href="addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-  <li role="presentation"><a href="showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
-  <li role="presentation"><a href="login.php"><span class="glyphicon glyphicon-asterisk"></span>login</a></li>
-</ul>
-<form class="form-horizontal" action="" method="POST">
-  <br/>
-  <?php
-  if($success){
-  	echo '<div class="alert alert-success">'.$success.'</div>';
-  }
-  if(isset($errors))
-  {
-  	foreach ($errors as $error) {
-  		echo '<div class="alert alert-danger">'.$error.'</div>';
-  	}
-  }
-  ?>
+    <h2>(Suivi de Présence du Collaborateur)</h2>
+  </div>
 
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
+    <li role="presentation"><a href="addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
+    <li role="presentation"><a href="showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
+    <li role="presentation"><a href="login.php"><span class="glyphicon glyphicon-asterisk"></span>login</a></li>
+  </ul>
 
-  <div class="control-group">
-    <label class="control-label" for="textinput-1">User_id</label>
-    <div class="controls">
-      <input id="textinput-1" name="user_id" type="text" placeholder="user_id" class="input-xlarge">
+  <form class="form-horizontal" action="" method="POST">
+    <br />
+    <?php
+    if ($success) {
+      echo '<div class="alert alert-success">'.$success.'</div>';
+    }
+    if (isset($errors)) {
+      foreach ($errors as $error) {
+        echo '<div class="alert alert-danger">'.$error.'</div>';
+      }
+    }
+    ?>
+
+    <div class="control-group">
+      <label class="control-label" for="textinput-1">passcode</label>
+      <div class="controls">
+        <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
+      </div>
     </div>
-  </div>
 
-  <!-- Text input-->
+    <!-- Button -->
+    <div class="control-group">
+      <div class="controls">
+        <button id="singlebutton-0" name="Validate" class="btn btn-primary">Validate</button>
+      </div>
+    </div>
+  </form>
 
-<!-- Button -->
-<div class="control-group">
-  <div class="controls">
-    <button id="singlebutton-0" name="Validate" class="btn btn-primary">Validate</button>
-  </div>
 </div>
-</fieldset>
-</form>
-
-
-
-  </div>
 
 </body>
 </html>
