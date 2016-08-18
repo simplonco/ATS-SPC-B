@@ -17,10 +17,10 @@
 <h2>(Suivi de Présence du Collaborateur)</h2>
 </div>
 <ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-  <li role="presentation"><a href="addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-  <li role="presentation"><a href="showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
-  <li role="presentation"><a href="login.php"><span class="glyphicon glyphicon-asterisk"></span>login</a></li>
+  <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
+  <li role="presentation"class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
+  <li role="presentation"class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
+  <li role="presentation"class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
 </ul>
 <?php
 error_reporting("E_ALL & ~E_NOTIC");

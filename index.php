@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/custom.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -45,10 +45,9 @@
   </div>
 
   <ul class="nav nav-pills">
-    <li role="presentation" class="active"><a href="dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-    <li role="presentation"><a href="addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-    <li role="presentation"><a href="showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
-    <li role="presentation"><a href="login.php"><span class="glyphicon glyphicon-asterisk"></span>login</a></li>
+    <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
+    <li role="presentation"class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
+    <li role="presentation"class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
   </ul>
 
   <form class="form-horizontal" action="" method="POST">
@@ -64,7 +63,11 @@
     }
     ?>
 
+
     <div class="control-group">
+      <ul class="nav nav-pills">
+          <li role="presentation"class="active"><a href="index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
+          </ul>
       <label class="control-label" for="textinput-1">passcode</label>
       <div class="controls">
         <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
