@@ -6,6 +6,11 @@
 - NIGHATU Amare
 - ABOU ALNASSER Mohamad
 
+## How to setup and run the app
+
+- use index.php to run the project 
+- TODO..
+
 ## Diagrams
 
 ![SPC_PRISMA_Accueil.png](diagrams/SPC_PRISMA_Accueil.png)
