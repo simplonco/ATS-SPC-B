@@ -6,7 +6,10 @@
 - NIGHATU Amare
 - ABOU ALNASSER Mohamad
 
-##use index.php to run the project 
+## How to setup and run the app
+
+- use index.php to run the project 
+- TODO..
 
 ## Diagrams
 
