@@ -51,16 +51,15 @@ if(isset($_POST['Validate'])){
           // ** DEBUG ** //
           echo "<br /><h1>ARRIVAL_TIME = ".$ARRIVAL_TIME."</h1><br />";
           // *********** //
-          //$ARRIVAL_TIME = new DateTime($data['current_time']);
-          $ARRIVAL_TIME=".$ARRIVAL_TIME.";
+
           $LATE_TIME = new DateTime('10:00:00');
           $ABSENT_TIME = new DateTime('12:00:00');
             if ($ARRIVAL_TIME  > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
                 $errors[] = "Welcome but you are late for today";
             } else if ($ARRIVAL_TIME > $ABSENT_TIME) {
-                $errors[] = "Welcome but You will be considered as absent today".$ARRIVAL_TIME;
+                $errors[] = "Welcome but You will be considered as absent today" ;
             } else {
-                $success = "Welcome and Thank you<br />".$ARRIVAL_TIME;
+                $success = "Welcome and Thank you<br />".date("d/M/Y G.i:s", time())."<br />".;
             }
         }
     }
@@ -114,3 +113,4 @@ if(isset($_POST['Validate'])){
 
 </body>
 </html>
+
