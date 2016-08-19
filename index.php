@@ -18,6 +18,7 @@ if(isset($_POST['Validate'])){
     if (empty($passcode)) {
         $errors[] = "All fields required";
     } else {
+
         // Connect to database
         include 'php/conn.php';
 
