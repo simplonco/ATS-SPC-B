@@ -1,5 +1,4 @@
 AuthName "Protected administration page"
 AuthType Basic
-AuthUserFile "//var/www/html/ATS-SPC-B/admin/.htpasswd"
+AuthUserFile ".htpasswd"
 Require valid-user
-/var/www/html/ATS-SPC-B/admin/chemin.php
