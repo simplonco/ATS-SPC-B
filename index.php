@@ -102,24 +102,12 @@ if(isset($_POST['Validate'])){
         		$stmt=$conn->prepare($sqle);
         		$stmt->bindParam(1,$user_id,PDO::PARAM_STR);
         		$stmt->execute();
-            $success = "the user id is ".$user_id;
+            //$success = "the user id is ".$user_id;
           }
         }
       }
     ?>
-    <div id="page">
-      <div id="page_header">
-        <h1>Projet SPC</h1>
-        <h2>(Suivi de Présence du Collaborateur)</h2>
-      </div>
 
-      <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-        <li role="presentation"class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-        <li role="presentation"class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
-      </ul>
-
-        <form class="form-horizontal" action="" method="POST">
           <br />
           <?php
           if ($success) {

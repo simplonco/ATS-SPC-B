@@ -42,7 +42,7 @@
 </div>
 <ul class="nav nav-pills">
   <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-  <li role="presentation"class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
+  <li role="presentation"class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
   <li role="presentation"class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
   <li role="presentation"class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
 </ul>
@@ -57,32 +57,8 @@
   	foreach ($errors as $error) {
   		echo '<div class="alert alert-danger">'.$error.'</div>';
   	}
+  }
     ?>
-    <div id="page">
-      <div id="page_header">
-      <h1>Projet SPC</h1>
-      <h2>(Suivi de Présence du Collaborateur)</h2>
-      </div>
-      <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-        <li role="presentation"class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-        <li role="presentation"class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
-        <li role="presentation"class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
-      </ul>
-      <form class="form-horizontal" action="" method="POST">
-        <br/>
-        <?php
-        if($success){
-        	echo '<div class="alert alert-success">'.$success.'</div>';
-        }
-        if(isset($errors))
-        {
-        	foreach ($errors as $error) {
-        		echo '<div class="alert alert-danger">'.$error.'</div>';
-        	}
-        }
-        ?>
-
 
         <div class="control-group">
           <label class="control-label" for="textinput-1">username</label>
