@@ -27,6 +27,8 @@
           $user_id = 0;
           while($row_user = $stmt_user->fetch(PDO::FETCH_ASSOC)) {
             $user_id = $row_user["id"];
+            $nome=$row_user["name"];
+            $surname=$row_user["surname"];
           }
 
           if ($user_id == 0) {
@@ -52,11 +54,11 @@
             $ABSENT_TIME = new DateTime('12:00:00');
 
             if ($ARRIVAL_TIME  > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
-                $errors[] = "Welcome but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                $errors[] = "Welcome $nome $surname but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
             } else if ($ARRIVAL_TIME > $ABSENT_TIME) {
-                $errors[] = "Welcome but You will be considered as absent today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                $errors[] = "Welcome $nome $surname but You will be considered as absent today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
             } else {
-                $success = "Welcome and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                $success = "Welcome $nome $surname and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
             }
           }
       }
@@ -72,7 +74,7 @@
     <ul class="nav nav-pills">
       <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
       <li role="presentation"class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-      <li role="presentation"class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
+      <li role="presentation"class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
       <li role="presentation"class="active"><a href="index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
     </ul>
 
