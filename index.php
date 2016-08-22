@@ -2,18 +2,18 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/custom.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <!--
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
-  <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
-  -->
-  <title>ATS App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+    -->
+    <title>ATS App</title>
 </head>
 
 <body>
@@ -45,13 +45,14 @@
                 $sql_arrival_time = "SELECT arrival_time FROM checkins WHERE user_id = $user_id ORDER BY id";
                 $stmt_arrival_time = $conn->query($sql_arrival_time);
 
+                $PREVIOUS_ARRIVAL_TIME = new DateTime('@0'); // very old Datetime!
                 // Retreive arrival time
                 while ($row = $stmt_arrival_time->fetch(PDO::FETCH_ASSOC)) {
-                    $ARRIVAL_TIME = new DateTime($row['arrival_time']);
+                    $PREVIOUS_ARRIVAL_TIME = new DateTime($row['arrival_time']);
                 }
 
                 //Check if there is already an entry of this user today
-                $day = strtotime($ARRIVAL_TIME->format('Y-m-d H:i:s'));
+                $day = strtotime($PREVIOUS_ARRIVAL_TIME->format('Y-m-d H:i:s'));
                 $day = date("Y-m-d", $day);
                 $current_day = date("Y-m-d");
 
