@@ -16,9 +16,9 @@
 <h2>(Suivi de Présence du Collaborateur)</h2>
 </div>
 <ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
+  <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
   <li role="presentation"class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-  <li role="presentation"class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Showall</a></li>
+  <li role="presentation"class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
   <li role="presentation"class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
 </ul>
 <?php
