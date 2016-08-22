@@ -27,8 +27,8 @@
                 $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
                 $stmt = $conn->query($sql);
                 $count = $stmt->rowcount();
-                $user_id = $row['id'];
-                if (!isset($user_id)) {
+
+                if ($user_id==0) {
                     $errors[] = 'The user id is wrong';
                 }
                 else {
