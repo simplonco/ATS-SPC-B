@@ -48,20 +48,20 @@
                         $ARRIVAL_TIME = new DateTime($row->arrival_time);
                         if ($ARRIVAL_TIME < $LATE_TIME) {
                             echo'
-                            		<tr>
-                            		<td>'.$id++."</td>
+                                <tr>
+                                <td>'.$id++."</td>
                                 <td>{$row->user_id}</td>
-                            		<td>".$ARRIVAL_TIME->format('Y-m-d H:i:s').'</td>
-                            		</tr>
-                            		';
+                                <td>".$ARRIVAL_TIME->format('Y-m-d H:i:s').'</td>
+                                </tr>
+                                ';
                         } else {
                             echo'
-                            		<tr>
-                            		<td>'.$id++."</td>
+                                <tr>
+                                <td>'.$id++."</td>
                                 <td>{$row->user_id}</td>
-                            		<td>".$ARRIVAL_TIME->format('Y-m-d H:i:s').'</td>
-                            		</tr>
-                            		';
+                                <td>".$ARRIVAL_TIME->format('Y-m-d H:i:s').'</td>
+                                </tr>
+                                ';
                         }
                     }
                 ?>
