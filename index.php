@@ -71,25 +71,11 @@
     }
     ?>
 
-  <div id="page">
-    <div id="page_header">
-      <h1>Projet SPC</h1>
-      <h2>(Suivi de Présence du Collaborateur)</h2>
-    </div>
-
-    <form class="form-horizontal" action="" method="POST">
-      <br />
-      <?php
-      if ($success) {
-        echo '<div class="alert alert-success">'.$success.'</div>';
-      }
-      if (isset($errors)) {
-        foreach ($errors as $error) {
-          echo '<div class="alert alert-danger">'.$error.'</div>';
-
-        }
-    }
-    ?>
+    <div id="page">
+        <div id="page_header">
+            <h1>Projet SPC</h1>
+            <h2>(Suivi de Présence du Collaborateur)</h2>
+        </div>
 
         <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
