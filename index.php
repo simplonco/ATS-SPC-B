@@ -54,11 +54,9 @@
                     $success = "Welcome $nome $surname and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                 }
             }
-
-          }
-      }
-  }
-  ?>
+        }
+    }
+    ?>
 
   <div id="page">
     <div id="page_header">
