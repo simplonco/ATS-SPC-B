@@ -20,14 +20,14 @@
             $user_id = $_POST['user_id'];
             $errors = array();
             if (empty($user_id)) {
-                $errors[] = 'ALL Fields requierd';
+                $errors[] = 'All fields requierd';
             } else {
                 require 'conn.php';
 
-                $sql = "SELECT * FROM checkins WHERE user_id = $user_id ";
+                $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
                 $stmt = $conn->query($sql);
                 $count = $stmt->rowcount();
-                if ($user_id == null) {
+                if (!isset($user_id)) {
                     $errors[] = 'The user id is wrong';
                 }
                 $id = 1;
