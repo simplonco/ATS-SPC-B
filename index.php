@@ -30,41 +30,53 @@
             // Retreive user form passcode
             $sql_user = "SELECT * FROM users WHERE passcode = $passcode";
             $stmt_user = $conn->query($sql_user);
-            $user_id = 0;
+
+            // Retreive user informations
             while ($row_user = $stmt_user->fetch(PDO::FETCH_ASSOC)) {
                 $user_id = $row_user['id'];
-                $nome = $row_user['name'];
+                $name = $row_user['name'];
                 $surname = $row_user['surname'];
             }
 
-            if ($user_id == 0) {
+            // Check if user exist
+            if (!isset($user_id)) {
                 $errors[] = 'The user id is wrong';
             } else {
-
-                // Add entry in checkin table
-                // TODO: Check if there is already an entry of this user today
-                $sql_checkin = 'INSERT INTO checkins(user_id) VALUES (?)';
-                $stmt_checkin = $conn->prepare($sql_checkin);
-                $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
-                $stmt_checkin->execute();
-
-                // Retreive arrival time
                 $sql_arrival_time = "SELECT arrival_time FROM checkins WHERE user_id = $user_id ORDER BY id";
                 $stmt_arrival_time = $conn->query($sql_arrival_time);
 
+                // Retreive arrival time
                 while ($row = $stmt_arrival_time->fetch(PDO::FETCH_ASSOC)) {
                     $ARRIVAL_TIME = new DateTime($row['arrival_time']);
                 }
 
-                $LATE_TIME = new DateTime('10:00:00');
-                $ABSENT_TIME = new DateTime('12:00:00');
+                //Check if there is already an entry of this user today
+                $day = strtotime($ARRIVAL_TIME->format('Y-m-d H:i:s'));
+                $day = date("Y-m-d", $day);
+                $current_day = date("Y-m-d");
 
-                if ($ARRIVAL_TIME  > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
-                    $errors[] = "Welcome $nome $surname but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
-                } elseif ($ARRIVAL_TIME > $ABSENT_TIME) {
-                    $errors[] = "Welcome $nome $surname but You will be considered as absent today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
-                } else {
-                    $success = "Welcome $nome $surname and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                if ($day != $current_day) {
+                    // Get arrival time
+                    $ARRIVAL_TIME = new DateTime(); // current DateTime!
+                    $LATE_TIME = new DateTime('10:00:00');
+                    $ABSENT_TIME = new DateTime('12:00:00');
+
+                    // Add entry in checkin table
+                    $sql_checkin = 'INSERT INTO checkins(user_id) VALUES (?)';
+                    $stmt_checkin = $conn->prepare($sql_checkin);
+                    $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
+                    $stmt_checkin->execute();
+
+                    // Display user message
+                    if ($ARRIVAL_TIME  > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
+                        $errors[] = "Welcome $name $surname but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                    } elseif ($ARRIVAL_TIME > $ABSENT_TIME) {
+                        $errors[] = "Welcome $name $surname but you will be considered as absent today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                    } else {
+                        $success = "Welcome $name $surname and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                    }
+                } else { // $day == $current_day
+                    $errors[] = 'you are already check in';
                 }
             }
         }
