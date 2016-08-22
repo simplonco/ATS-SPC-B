@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <?php
     if (isset($_POST['Validate'])) {
         $passcode = $_POST['passcode'];
@@ -65,49 +64,47 @@
         }
     }
     ?>
-
-        <div id="page">
-            <div id="page_header">
-                <h1>Projet SPC</h1>
-                <h2>(Suivi de Présence du Collaborateur)</h2>
-            </div>
-
-            <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-                <li role="presentation" class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-                <li role="presentation" class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
-                <li role="presentation" class="active"><a href="index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
-            </ul>
-
-            <form class="form-horizontal" action="" method="POST">
-                <br />
-                <?php
-                if ($success) {
-                    echo '<div class="alert alert-success">'.$success.'</div>';
-                }
-                if (isset($errors)) {
-                    foreach ($errors as $error) {
-                        echo '<div class="alert alert-danger">'.$error.'</div>';
-                    }
-                }
-                ?>
-                <div class="control-group">
-                    <label class="control-label" for="textinput-1">passcode</label>
-                    <div class="controls">
-                        <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
-                    </div>
-                </div>
-                <br />
-
-                <!-- Button -->
-                <div class="control-group">
-                    <div class="controls">
-                        <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Validate</button>
-                    </div>
-                </div>
-            </form>
-
+    <div id="page">
+        <div id="page_header">
+            <h1>Projet SPC</h1>
+            <h2>(Suivi de Présence du Collaborateur)</h2>
         </div>
+
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
+            <li role="presentation" class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
+            <li role="presentation" class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
+            <li role="presentation" class="active"><a href="index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
+        </ul>
+
+        <form class="form-horizontal" action="" method="POST">
+            <br />
+            <?php
+            if ($success) {
+                echo '<div class="alert alert-success">'.$success.'</div>';
+            }
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    echo '<div class="alert alert-danger">'.$error.'</div>';
+                }
+            }
+            ?>
+            <div class="control-group">
+                <label class="control-label" for="textinput-1">passcode</label>
+                <div class="controls">
+                    <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
+                </div>
+            </div>
+            <br />
+
+            <!-- Button -->
+            <div class="control-group">
+                <div class="controls">
+                    <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Validate</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
