@@ -52,7 +52,7 @@
             $ABSENT_TIME = new DateTime('12:00:00');
 
             if ($ARRIVAL_TIME  > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
-                $errors[] = "Welcome but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                $errors[] = "Welcome but you are late today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
             } else if ($ARRIVAL_TIME > $ABSENT_TIME) {
                 $errors[] = "Welcome but You will be considered as absent today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
             } else {
