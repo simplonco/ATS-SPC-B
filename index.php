@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -14,8 +15,16 @@
   <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
   -->
   <title>ATS App</title>
-</head>
 
+  <script>
+$(document).ready(function(){
+   $("#bienvenue").click(function(){
+       $("#page").slideToggle("slow");
+       $("#bienvenue").hide();
+   });
+});
+</script>
+</head>
 <body>
     <?php
     if (isset($_POST['Validate'])) {
@@ -70,20 +79,11 @@
         }
     }
     ?>
-
+            <img id="logo" src="image/logo-accenture.png">
+    <div id="welcome_page">
+       <h1 id="bienvenue">Bienvenue </br> à </br> Accenture</h1>
+     </div>
     <div id="page">
-        <div id="page_header">
-            <h1>Projet SPC</h1>
-            <h2>(Suivi de Présence du Collaborateur)</h2>
-        </div>
-
-        <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-            <li role="presentation" class="active"><a href="php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-            <li role="presentation" class="active"><a href="php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
-            <li role="presentation" class="active"><a href="index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
-        </ul>
-
         <form class="form-horizontal" action="" method="POST">
             <br />
             <?php
@@ -97,7 +97,7 @@
             }
             ?>
             <div class="control-group">
-                <label class="control-label" for="textinput-1">passcode</label>
+                <label class="control-label" for="textinput-1">Enter your passcode</label></br></br>
                 <div class="controls">
                     <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
                 </div>
@@ -113,5 +113,4 @@
         </form>
     </div>
 </body>
-
 </html>
