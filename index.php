@@ -35,7 +35,7 @@ $(document).ready(function(){
             include 'php/conn.php';
 
             // Retreive user form passcode
-            $sql_user = "SELECT * FROM users WHERE passcode = $passcode";
+            $sql_user = "SELECT * FROM users WHERE passcode = '$passcode'";
             $stmt_user = $conn->query($sql_user);
 
             // Retreive user informations
@@ -84,18 +84,20 @@ $(document).ready(function(){
                         $success = "Welcome $name $surname and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                     }
                 } else { // $day == $current_day
-                    $errors[] = 'you are already check in';
+                    $errors[] = 'You have already checked in';
                 }
             }
         }
     }
     ?>
-            <img id="logo" src="image/logo-accenture.png">
+    <img id="logo" src="image/logo-accenture.png">
+    <?php // DEBUG: if (!$_GET["ft"]) { ?>
     <div id="welcome_page">
        <h1 id="bienvenue">Bienvenue </br> à </br> Accenture</h1>
      </div>
+     <?php // DEBUG: } ?>
     <div id="page">
-        <form class="form-horizontal" action="" method="POST">
+        <form class="form-horizontal" action="?ft=1" method="POST"> <!-- DEBUG -->
             <br />
             <?php
             if ($success) {

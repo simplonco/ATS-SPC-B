@@ -16,12 +16,12 @@
             <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
         </ul>
         <?php
-        error_reporting('E_ALL & ~E_NOTIC');
         require 'conn.php';
+
         $sql = 'SELECT * FROM users ORDER BY id';
         $stmt = $conn->query($sql);
         $count = $stmt->rowcount();
-        $id = 1;
+
         if ($count) {
         ?>
         <table class="table">
@@ -29,11 +29,12 @@
                 <td>id</td>
                 <td>name</td>
                 <td>surname</td>
-                <td>email</time>
-                </td>
+                <td>email</td>
                 <td>passcode</td>
             </tr>
             <?php
+            $id = 1;
+
             while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
                 echo'
                     <tr>
@@ -49,7 +50,7 @@
             </table>
         <?php
         } else {
-            // TODO
+            // TODO: Display an error!
         }
         ?>
     </div>
