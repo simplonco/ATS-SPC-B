@@ -33,10 +33,8 @@ $(document).ready(function(){
         } else {
             // Connect to database
             include 'php/conn.php';
-
             // Retreive user form passcode
             $sql_user = "SELECT * FROM users WHERE passcode = '$passcode'";
-            //$stmt_user = $conn->query($sql_user);
             $stmt_user=$conn->prepare($sql_user);
             $stmt_user->bindParam(1,$passcode,PDO::PARAM_INT);
             $stmt_user->execute();
@@ -46,37 +44,31 @@ $(document).ready(function(){
                 $name = $row_user['name'];
                 $surname = $row_user['surname'];
             }
-
             // Check if user exist
             if (!isset($user_id)) {
-                $errors[] = 'The user id is wrong';
+                $errors[] = 'The user_id is wrong';
             } else {
                 $sql_arrival_time = "SELECT arrival_time FROM checkins WHERE user_id = $user_id ORDER BY id";
                 $stmt_arrival_time = $conn->query($sql_arrival_time);
-
                 $PREVIOUS_ARRIVAL_TIME = new DateTime('@0'); // very old Datetime!
                 // Retreive arrival time
                 while ($row = $stmt_arrival_time->fetch(PDO::FETCH_ASSOC)) {
                     $PREVIOUS_ARRIVAL_TIME = new DateTime($row['arrival_time']);
                 }
-
                 //Check if there is already an entry of this user today
                 $day = strtotime($PREVIOUS_ARRIVAL_TIME->format('Y-m-d H:i:s'));
                 $day = date("Y-m-d", $day);
                 $current_day = date("Y-m-d");
-
                 if ($day != $current_day) {
                     // Get arrival time
                     $ARRIVAL_TIME = new DateTime(); // current DateTime!
                     $LATE_TIME = new DateTime('10:00:00');
                     $ABSENT_TIME = new DateTime('12:00:00');
-
                     // Add entry in checkin table
                     $sql_checkin = 'INSERT INTO checkins(user_id) VALUES (?)';
                     $stmt_checkin = $conn->prepare($sql_checkin);
                     $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
                     $stmt_checkin->execute();
-
                     // Display user message
                     if ($ARRIVAL_TIME  > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
                         $errors[] = "Welcome $name $surname but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
@@ -112,7 +104,7 @@ $(document).ready(function(){
             }
             ?>
             <div class="control-group">
-                <label class="control-label" for="textinput-1">Enter your passcode</label></br></br>
+                <label class="control-label" for="textinput-1">Enter your passcode, please</label></br></br>
                 <div class="controls">
                     <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
                 </div>
