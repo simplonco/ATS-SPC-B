@@ -36,8 +36,10 @@ $(document).ready(function(){
 
             // Retreive user form passcode
             $sql_user = "SELECT * FROM users WHERE passcode = '$passcode'";
-            $stmt_user = $conn->query($sql_user);
-
+            //$stmt_user = $conn->query($sql_user);
+            $stmt_user=$conn->prepare($sql_user);
+            $stmt_user->bindParam(1,$passcode,PDO::PARAM_INT);
+            $stmt_user->execute();
             // Retreive user informations
             while ($row_user = $stmt_user->fetch(PDO::FETCH_ASSOC)) {
                 $user_id = $row_user['id'];

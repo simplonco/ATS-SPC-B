@@ -25,7 +25,10 @@
                 require 'conn.php';
 
                 $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
-                $stmt = $conn->query($sql);
+                //$stmt = $conn->query($sql);
+                $stmt=$conn->prepare($sql);
+		$stmt->bindParam(1,$user_id,PDO::PARAM_INT);
+		$stmt->execute();
                 $count = $stmt->rowcount();
 
                 if ($user_id==0) {
@@ -73,7 +76,7 @@
                 <?php
                  }
                else {
-                    // TODO: Show a beautiful error!
+                    $errors[] = 'There is not user in table';
                 }
               }
             }
