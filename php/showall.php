@@ -27,9 +27,13 @@
                 $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
                 $stmt = $conn->query($sql);
                 $count = $stmt->rowcount();
-                if (!isset($user_id)) {
+
+                if ($user_id==0) {
                     $errors[] = 'The user id is wrong';
                 }
+                else {
+
+
                 $id = 1;
                 $LATE_TIME = new DateTime('15:10:00');
                 $ABSENT_TIME = new DateTime('17:00:00');
@@ -67,9 +71,11 @@
                 ?>
                 </table>
                 <?php
-                } else {
+                 }
+               else {
                     // TODO: Show a beautiful error!
                 }
+              }
             }
         }
 
