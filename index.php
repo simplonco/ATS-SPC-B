@@ -83,6 +83,7 @@ $(document).ready(function(){
                 }
             }
         }
+
     }
     ?>
     <img id="logo" src="image/logo-accenture.png">
