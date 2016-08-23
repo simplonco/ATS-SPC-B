@@ -24,6 +24,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+
     <?php
     if (isset($_POST['Validate'])) {
         $passcode = $_POST['passcode'];
@@ -55,8 +56,8 @@ $(document).ready(function(){
                 }
                 //Check if there is already an entry of this user today
                 $day = strtotime($PREVIOUS_ARRIVAL_TIME->format('Y-m-d H:i:s'));
-                $day = date("Y-m-d", $day);
-                $current_day = date("Y-m-d");
+                $day = date('Y-m-d', $day);
+                $current_day = date('Y-m-d');
                 if ($day != $current_day) {
                     // Get arrival time
                     $ARRIVAL_TIME = new DateTime(); // current DateTime!
@@ -68,7 +69,7 @@ $(document).ready(function(){
                     $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
                     $stmt_checkin->execute();
                     // Display user message
-                    if ($ARRIVAL_TIME  > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
+                    if ($ARRIVAL_TIME > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
                         $errors[] = "Welcome $name $surname but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                     } elseif ($ARRIVAL_TIME > $ABSENT_TIME) {
                         $errors[] = "Welcome $name $surname but you will be considered as absent today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
@@ -76,18 +77,19 @@ $(document).ready(function(){
                         $success = "Welcome $name $surname and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                     }
                 } else { // $day == $current_day
-                    $errors[] = 'You have already checked in';
+                    $errors[] = 'You have already checked-in';
                 }
             }
         }
+
     }
     ?>
     <img id="logo" src="image/logo-accenture.png">
-    <?php // DEBUG: if (!$_GET["ft"]) { ?>
+    <?php // DEBUG: if (!$_GET["ft"]) {?>
     <div id="welcome_page">
        <h1 id="bienvenue">Bienvenue </br> à </br> Accenture</h1>
      </div>
-     <?php // DEBUG: } ?>
+     <?php // DEBUG: }?>
     <div id="page">
         <form class="form-horizontal" action="?ft=1" method="POST"> <!-- DEBUG -->
             <br />
@@ -104,7 +106,7 @@ $(document).ready(function(){
             <div class="control-group">
                 <label class="control-label" for="textinput-1">Enter your passcode, please</label></br></br>
                 <div class="controls">
-                    <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
+                    <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge"<?php include '../Virtual Keyboard/Virtual Keyboard.php'; ?> >
                 </div>
             </div>
             <br />

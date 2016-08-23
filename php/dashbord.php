@@ -24,6 +24,7 @@
 
         if ($count) {
         ?>
+
         <table class="table">
             <tr>
                 <td>id</td>
