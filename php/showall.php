@@ -21,7 +21,7 @@
             $Month_in = $_POST['Month_in'];
             $errors = array();
             if (empty($user_id) || empty($Month_in)) {
-                $errors[] = 'All fields requierd';
+                $errors[] = 'All fields are requierd';
             } else {
                 require 'conn.php';
 
@@ -48,7 +48,6 @@
                         <td></td>
                         <td>user_id</td>
                         <td>ARRIVAL_TIME</td>
-
                      </tr>
                     <?php
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -99,7 +98,7 @@
                 <?php
                  }
                else {
-                    $errors[] = 'There is not user in table';
+                    $errors[] = 'There is no user in table';
                 }
               }
             }
@@ -135,7 +134,6 @@
       <option value="10">10</option>
       <option value="11">11</option>
       <option value="12">12</option>
-
     </select>
   </div>
 </div>
