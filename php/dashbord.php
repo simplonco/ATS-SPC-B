@@ -36,9 +36,9 @@
             $id = 1;
 
             while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
-                echo'
+                echo"
                     <tr>
-                    <td>'.$id++."</td>
+                    <td>".$id++."</td>
                     <td>{$row->name}</td>
                     <td>{$row->surname}</td>
                     <td>{$row->mail}</td>

@@ -18,59 +18,82 @@
         <?php
         if (isset($_POST['Validate'])) {
             $user_id = $_POST['user_id'];
+            $Month_in = $_POST['Month_in'];
             $errors = array();
-            if (empty($user_id)) {
+            if (empty($user_id) || empty($Month_in)) {
                 $errors[] = 'All fields requierd';
             } else {
                 require 'conn.php';
 
                 $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
-                //$stmt = $conn->query($sql);
+
                 $stmt=$conn->prepare($sql);
-		$stmt->bindParam(1,$user_id,PDO::PARAM_INT);
-		$stmt->execute();
+	             	$stmt->bindParam(1,$user_id,PDO::PARAM_INT);
+		            $stmt->execute();
                 $count = $stmt->rowcount();
 
                 if ($user_id==0) {
                     $errors[] = 'The user id is wrong';
                 }
                 else {
+                $id = 1;$j=1;$k=1;$l=1;
+                $late = 'late time';
+                $in_time = 'in the time';
+                $absent="you considered absent";
 
-
-                $id = 1;
-                $LATE_TIME = new DateTime('15:10:00');
-                $ABSENT_TIME = new DateTime('17:00:00');
-                $bad = 'late time';
-                $good = 'at the time';
-                if ($count) {
+                      if ($count) {
                 ?>
                 <table class="table">
-                    <tr>
+                     <tr>
                         <td></td>
                         <td>user_id</td>
                         <td>ARRIVAL_TIME</td>
-                    </tr>
+
+                     </tr>
                     <?php
-                    while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
-                        $ARRIVAL_TIME = new DateTime($row->arrival_time);
-                        if ($ARRIVAL_TIME < $LATE_TIME) {
-                            echo'
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                        $ARRIVAL_TIME = $row['arrival_time'];
+                        $user=$row['user_id'];
+                        $Hour = strtotime($ARRIVAL_TIME);
+                        $Hour = date("H", $Hour);
+                        $month = strtotime($ARRIVAL_TIME);
+                        $month = date("m", $month);
+
+                        if ($month==$Month_in){
+                              if ($Hour <10){
+                                  echo"
+                                      <tr>
+                                      <td>".$id++."</td>
+                                      <td>$user</td>
+                                      <td>$ARRIVAL_TIME</td>
+                                      <td>$in_time.".$j++."</td>
+                                      </tr>
+                                      ";
+                             }
+                             elseif ($Hour<12){
+
+                             echo"
                                 <tr>
-                                <td>'.$id++."</td>
-                                <td>{$row->user_id}</td>
-                                <td>".$ARRIVAL_TIME->format('Y-m-d H:i:s').'</td>
+                                <td>".$id++."</td>
+                                <td>$user</td>
+                                <td>$ARRIVAL_TIME</td>
+                                <td>$late.".$k++."</td>
                                 </tr>
-                                ';
-                        } else {
-                            echo'
-                                <tr>
-                                <td>'.$id++."</td>
-                                <td>{$row->user_id}</td>
-                                <td>".$ARRIVAL_TIME->format('Y-m-d H:i:s').'</td>
-                                </tr>
-                                ';
+                                ";
+                            }
+                            else {
+                            echo"
+                          <tr>
+                          <td>".$id++."</td>
+                          <td>$user</td>
+                          <td>$ARRIVAL_TIME</td>
+                          <td>$absent.".$l++."</td>
+                          </tr>
+                          ";
+                                }
                         }
-                    }
+                 }
                 ?>
                 </table>
                 <?php
@@ -96,6 +119,26 @@
                 </div>
             </div>
             <br />
+            <div class="control-group">
+  <label class="control-label" for="selectmultiple-0">Select Month</label>
+  <div class="controls">
+    <select id="selectmultiple-0" name="Month_in" class="input-xlarge" multiple="multiple">
+      <option value="01">01</option>
+      <option value="02">02</option>
+      <option value="03">03</option>
+      <option value="04">04</option>
+      <option value="05">05</option>
+      <option value="06">06</option>
+      <option value="07">07</option>
+      <option value="08">08</option>
+      <option value="09">09</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+
+    </select>
+  </div>
+</div>
             <div class="control-group">
                 <div class="controls">
                     <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Validate</button>
