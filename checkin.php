@@ -16,11 +16,12 @@
     <title>ATS App</title>
 </head>
 <body>
+      <img id="logo" src="image/logo-accenture.png">
     <?php
+
     if (isset($_POST['Validate'])) {
         $passcode = $_POST['passcode'];
         $errors = array();
-
         if (empty($passcode)) {
             $errors[] = 'All fields required';
         } else {
@@ -44,7 +45,6 @@
             if (!isset($user_id)) {
                 $errors[] = 'The user_id is wrong';
             } else {
-
                 $sql_arrival_time = "SELECT arrival_time FROM checkins WHERE user_id = $user_id ORDER BY id";
                 $stmt_arrival_time = $conn->query($sql_arrival_time);
                 $PREVIOUS_ARRIVAL_TIME = new DateTime('@0'); // very old Datetime!
@@ -98,7 +98,7 @@
                 <script>
                 setTimeout(function () {
                     window.location = "index.php";
-                }, 3000);
+                }, 5000);
                 </script>
             <?php
             }
