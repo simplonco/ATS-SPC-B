@@ -33,7 +33,7 @@
                 $count = $stmt->rowcount();
 
                 if ($user_id==0) {
-                    $errors[] = 'The user id is wrong';
+                    $errors[] = 'The user_id is wrong';
                 }
                 else {
                 $id = 1;$j=1;$k=1;$l=1;

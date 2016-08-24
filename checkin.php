@@ -16,11 +16,11 @@
     <title>ATS App</title>
 </head>
 <body>
+      <img id="logo" src="image/logo-accenture.png">
     <?php
     if (isset($_POST['Validate'])) {
         $passcode = $_POST['passcode'];
         $errors = array();
-
         if (empty($passcode)) {
             $errors[] = 'All fields required';
         } else {
@@ -98,7 +98,7 @@
                 <script>
                 setTimeout(function () {
                     window.location = "index.php";
-                }, 3000);
+                }, 5000);
                 </script>
             <?php
             }
