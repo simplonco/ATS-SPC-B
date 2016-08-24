@@ -82,7 +82,7 @@
                     }
 
                 } else { // $day == $current_day
-                    $errors[] = 'You have already checked-in';
+                    $success = 'You have already checked-in';
                 }
             }
         }
@@ -98,7 +98,7 @@
                 <script>
                 setTimeout(function () {
                     window.location = "index.php";
-                }, 5000);
+                }, 3000);
                 </script>
             <?php
             }
