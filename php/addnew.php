@@ -8,22 +8,31 @@
     if (isset($_POST['add-new'])) {
         $username = $_POST['name'];
         $surname = $_POST['surname'];
-        $password = $_POST['passcode'];
         $mail = $_POST['mail'];
 
         $errors = array();
-        if (empty($username) || empty($password)) {
+        if (empty($username) || empty($surname) || empty($mail)) {
             $errors[] = 'ALL Fields requierd';
         } else {
             include 'conn.php';
+            function generateRandomString($length = 6) {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                return $randomString;
+            }
+            $passcode =  generateRandomString();
             $sql = 'INSERT INTO users(name,surname,mail,passcode) VALUES (?,?,?,?)';
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(1, $username, PDO::PARAM_STR);
             $stmt->bindParam(2, $surname, PDO::PARAM_STR);
             $stmt->bindParam(3, $mail, PDO::PARAM_STR);
-            $stmt->bindParam(4, $password, PDO::PARAM_STR);
+            $stmt->bindParam(4, $passcode, PDO::PARAM_STR);
             $stmt->execute();
-            $success = 'the table is add';
+            $success="The table is added and the passcode is ";
         }
     }
     ?>
@@ -42,7 +51,7 @@
             <br />
             <?php
             if ($success) {
-                echo '<div class="alert alert-success">'.$success.'</div>';
+                echo '<div class="alert alert-success">'.$success.$passcode.'</div>';
             }
             if (isset($errors)) {
                 foreach ($errors as $error) {
@@ -74,13 +83,6 @@
                 </div>
             </div>
 
-            <!-- Text input-->
-            <div class="control-group">
-                <label class="control-label" for="textinput-1">passcode</label>
-                <div class="controls">
-                    <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge">
-                </div>
-            </div>
 
             <!-- Button -->
             <div class="control-group">
