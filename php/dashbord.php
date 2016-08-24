@@ -51,7 +51,7 @@
             </table>
         <?php
         } else {
-            $errors[] = 'There is not user in table';
+            // TODO: Display an error!
         }
         ?>
     </div>
