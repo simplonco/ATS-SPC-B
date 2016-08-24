@@ -17,17 +17,19 @@
 </head>
 
 <body>
-    <img id="logo" src="image/logo-accenture.png">
-    <div id="welcome_page">
-       <h1 id="bienvenue">Bienvenue </br> à </br> Accenture</h1>
+    <div id="header">
+        <img id="logo" src="image/logo-accenture.png">
+    </div>
+    <div id="welcome-page">
+       <h1>Bienvenue à <br /><strong>Accenture</strong></h1>
+       <p>Touchez ici !</p>
      </div>
      <script>
      $(document).ready(function(){
-        $("#bienvenue").click(function(){
-            $("#page").slideToggle(500);
-            $("#bienvenue").hide(500);
+        $("#welcome-page").click(function(){
+            $("#welcome-page").fadeOut(500);
             setTimeout(function () {
-              window.location = "checkin.php";
+                window.location = "checkin.php";
             }, 500);
         });
      });

@@ -1,40 +1,53 @@
-#page {
-    margin-left: 60px;
-    margin-top: 60px;
-    text-align: center;
-    font-size: 30px;
-    margin-top: 70px;
-}
-h1 {
-    color: blue;
-    font-size: 70px;
-}
-h2 {
-    font-size: 30px;
-}
-ul {
-    margin-top: 60px;
-}
-#bienvenue {
-    color: blue;
+#header {
+    background: #EEE;
     width: 100%;
-    height: 500px;
-    text-align: center;
-    margin-left: 30px;
+    margin: 0;
+    padding: 0 0 30px;
 }
+
 #logo {
     padding-top: 30px;
     padding-left: 30px;
 }
-#singlebutton-0 {
-    font-size: 30px;
-}
-#textinput-1 {
+
+#page {
     text-align: center;
 }
-.alert {
-    width: 95%;
+
+#checkin-form {
+    font-size: 26px;
 }
-#welcome_page {
-    margin-top: 150px;
+
+#checkin-form label {
+    margin-top: 50px;
+}
+
+#checkin-form input {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#checkin-form button {
+    font-size: 26px;
+    width: 300px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.alert {
+    margin: 0;
+}
+
+#welcome-page {
+    margin-top: 100px;
+    text-align: center;
+}
+
+#welcome-page h1 {
+    color: rgb(39, 128, 227);
+    font-size: 64px;
+}
+
+#welcome-page p {
+    font-size: 24px;
 }

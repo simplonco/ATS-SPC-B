@@ -16,7 +16,9 @@
     <title>ATS App</title>
 </head>
 <body>
-      <img id="logo" src="image/logo-accenture.png">
+    <div id="header">
+        <img id="logo" alt="accenture" src="image/logo-accenture.png">
+    </div>
     <?php
 
     if (isset($_POST['Validate'])) {
@@ -43,7 +45,7 @@
 
             // Check if user exist
             if (!isset($user_id)) {
-                $errors[] = 'The user_id is wrong';
+                $errors[] = 'The Passcode is wrong';
             } else {
                 $sql_arrival_time = "SELECT arrival_time FROM checkins WHERE user_id = $user_id ORDER BY id";
                 $stmt_arrival_time = $conn->query($sql_arrival_time);
@@ -89,8 +91,7 @@
     }
     ?>
     <div id="page">
-        <form class="form-horizontal" action="" method="POST">
-            <br />
+        <form id="checkin-form" class="form-horizontal" action="" method="POST">
             <?php
             if (isset($success)) {
             ?>
@@ -109,17 +110,12 @@
             }
             ?>
             <div class="control-group">
-                <label class="control-label" for="textinput-1">Enter your passcode, please</label></br></br>
+                <label class="control-label" for="textinput-1">Please enter your PASSCODE:</label>
                 <div class="controls">
-                    <input id="textinput-1" name="passcode" type="text" placeholder="passcode" class="input-xlarge" />
+                    <input name="passcode" type="text" placeholder="passcode" class="input-xlarge" />
                 </div>
-            </div>
-            <br />
-
-            <!-- Button -->
-            <div class="control-group">
                 <div class="controls">
-                    <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Validate</button>
+                    <button name="Validate" class="btn btn-primary" onclick="newDoc()">VALIDATE</button>
                 </div>
             </div>
         </form>
