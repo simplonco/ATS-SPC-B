@@ -13,7 +13,6 @@
             <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
             <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
             <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
-            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
         </ul>
         <?php
         if (isset($_POST['Validate'])) {
@@ -43,10 +42,14 @@
 
                       if ($count) {
                 ?>
+                <script>
+                $(document).ready(function(){$("tr:odd").addClass("odd");});
+                </script>
                 <table class="table">
                      <tr>
                         <td></td>
                         <td>user_id</td>
+                        <td>name</td>
                         <td>ARRIVAL_TIME</td>
                      </tr>
                     <?php
@@ -54,6 +57,7 @@
 
                         $ARRIVAL_TIME = $row['arrival_time'];
                         $user=$row['user_id'];
+                        $name=$row['name'];
                         $Hour = strtotime($ARRIVAL_TIME);
                         $Hour = date("H", $Hour);
                         $month = strtotime($ARRIVAL_TIME);
@@ -65,8 +69,9 @@
                                       <tr>
                                       <td>".$id++."</td>
                                       <td>$user</td>
+                                      <td>$name</td>
                                       <td>$ARRIVAL_TIME</td>
-                                      <td>$in_time.".$j++."</td>
+                                      <td>$in_time</td>
                                       </tr>
                                       ";
                              }
@@ -76,8 +81,9 @@
                                 <tr>
                                 <td>".$id++."</td>
                                 <td>$user</td>
+                                <td>$name</td>
                                 <td>$ARRIVAL_TIME</td>
-                                <td>$late.".$k++."</td>
+                                <td>$late</td>
                                 </tr>
                                 ";
                             }
@@ -86,8 +92,9 @@
                           <tr>
                           <td>".$id++."</td>
                           <td>$user</td>
+                          <td>$name</td>
                           <td>$ARRIVAL_TIME</td>
-                          <td>$absent.".$l++."</td>
+                          <td>$absent</td>
                           </tr>
                           ";
                                 }
@@ -110,7 +117,114 @@
             }
         }
         ?>
+        <?php
+        if (isset($_POST['Validate1'])) {
+
+
+                require 'conn.php';
+
+                $sql = "SELECT * FROM checkins ORDER BY 'id'";
+
+                $stmt=$conn->prepare($sql);
+	             	$stmt->bindParam(1,$user_id,PDO::PARAM_INT);
+		            $stmt->execute();
+                $count = $stmt->rowcount();
+
+$id=1;
+$j=0;
+                $late = 'late time';
+                $in_time = 'in the time';
+                $absent="you considered absent";
+
+                      if ($count) {
+                ?>
+                <script>
+                $(document).ready(function(){$("tr:odd").addClass("odd");});
+                </script>
+                <table class="table">
+                     <tr>
+                        <td></td>
+                        <td>user_id</td>
+                        <td>name</td>
+                        <td>ARRIVAL_TIME</td>
+                     </tr>
+                    <?php
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                        $ARRIVAL_TIME = $row['arrival_time'];
+                        $user=$row['user_id'];
+                        $name=$row['name'];
+                        $Hour = strtotime($ARRIVAL_TIME);
+                        $Hour = date("H", $Hour);
+                        $month = strtotime($ARRIVAL_TIME);
+                        $month = date("m", $month);
+                        $day = strtotime($ARRIVAL_TIME);
+                        $day = date('Y-m-d', $day);
+                        $current_day = date('Y-m-d');
+                        if ($day==$current_day){
+                              if ($Hour <10){
+                                  echo"
+                                      <tr>
+                                      <td>".$id++."</td>
+                                      <td>$user</td>
+                                      <td>$name</td>
+                                      <td>$ARRIVAL_TIME</td>
+                                      <td>$in_time</td>
+                                      </tr>
+                                      ";
+                             }
+                             elseif ($Hour<12){
+
+                             echo"
+                                <tr>
+                                <td>".$id++."</td>
+                                <td>$user</td>
+                                <td>$name</td>
+                                <td>$ARRIVAL_TIME</td>
+                                <td>$late</td>
+                                </tr>
+                                ";
+                            }
+                            else {
+                            echo"
+                          <tr>
+                          <td>".$id++."</td>
+                          <td>$user</td>
+                          <td>$name</td>
+                          <td>$ARRIVAL_TIME</td>
+                          <td>$absent</td>
+                          </tr>
+                          ";
+                                }
+                              }
+                                else {
+                                  $j=$j+1;
+                                }
+                        }
+
+                ?>
+                </table>
+                <?php
+                 }
+               else {
+                    $errors[] = 'There is no user in table';
+                }
+}
+if ($j==0) {
+$errors[] = 'There is not report today';
+}
+        if (isset($errors)) {
+            foreach ($errors as $error) {
+                echo '<div class="alert alert-danger">'.$error.'</div>';
+            }
+        }
+        ?>
         <form class="form-horizontal" action="" method="POST">
+              <div class="control-group">
+                  <div class="controls">
+                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Validate</button>
+                  </div>
+              </div>
             <div class="control-group">
                 <label class="control-label" for="textinput-1">user_id</label>
                 <div class="controls">

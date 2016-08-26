@@ -1,8 +1,16 @@
+
 #header {
     background: #EEE;
     width: 100%;
     margin: 0;
     padding: 0 0 30px;
+}
+#page_header {
+    background: #EEE;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0px;
 }
 
 #logo {
@@ -50,4 +58,7 @@
 
 #welcome-page p {
     font-size: 24px;
+}
+.odd{
+  background-color: #ccc;
 }
