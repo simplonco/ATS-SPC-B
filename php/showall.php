@@ -48,6 +48,7 @@
                 <table class="table">
                      <tr>
                         <td></td>
+
                         <td>Utilisateur_id</td>
                         <td>Nom</td>
                         <td>Heure d'arrivée</td>
@@ -57,7 +58,7 @@
 
                         $ARRIVAL_TIME = $row['arrival_time'];
                         $user=$row['user_id'];
-                        $name=$row['name'];
+                        $name=$row['surname'];
                         $Hour = strtotime($ARRIVAL_TIME);
                         $Hour = date("H", $Hour);
                         $month = strtotime($ARRIVAL_TIME);
@@ -144,6 +145,7 @@ $j=0;
                 <table class="table">
                      <tr>
                         <td></td>
+
                         <td>Utilisateur_id</td>
                         <td>Nom</td>
                         <td>Heure d'arrivée</td>
@@ -153,7 +155,7 @@ $j=0;
 
                         $ARRIVAL_TIME = $row['arrival_time'];
                         $user=$row['user_id'];
-                        $name=$row['name'];
+                        $name=$row['surname'];
                         $Hour = strtotime($ARRIVAL_TIME);
                         $Hour = date("H", $Hour);
                         $month = strtotime($ARRIVAL_TIME);
@@ -209,9 +211,10 @@ $j=0;
                else {
                     $errors[] = 'Il n y a pas utilisateur dans le tableau';
                 }
-}
+
 if ($j==0) {
 //$errors[] = 'Il n y a pas enregistrer aujourd hui';
+}
 }
         if (isset($errors)) {
             foreach ($errors as $error) {
