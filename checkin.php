@@ -99,7 +99,7 @@
                 <script>
                 setTimeout(function () {
                     window.location = "index.php";
-                }, 5000);
+                }, 9000);
                 </script>
             <?php
             }

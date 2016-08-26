@@ -21,7 +21,7 @@
         <img id="logo" src="image/logo-accenture.png">
     </div>
     <div id="welcome-page">
-       <h1>Bienvenue à <br /><strong>Accenture</strong></h1>
+       <h1>Bienvenue sur notre outil de gestion de présence <br /><strong>Accenture</strong></h1>
        <p>Touchez ici !</p>
      </div>
      <script>
