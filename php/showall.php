@@ -49,7 +49,7 @@
                      <tr>
                         <td></td>
                         <td>user_id</td>
-                        <td>name</td>
+                        <td>sur name</td>
                         <td>ARRIVAL_TIME</td>
                      </tr>
                     <?php
@@ -57,7 +57,7 @@
 
                         $ARRIVAL_TIME = $row['arrival_time'];
                         $user=$row['user_id'];
-                        $name=$row['name'];
+                        $name=$row['surname'];
                         $Hour = strtotime($ARRIVAL_TIME);
                         $Hour = date("H", $Hour);
                         $month = strtotime($ARRIVAL_TIME);
@@ -145,7 +145,7 @@ $j=0;
                      <tr>
                         <td></td>
                         <td>user_id</td>
-                        <td>name</td>
+                        <td>surname</td>
                         <td>ARRIVAL_TIME</td>
                      </tr>
                     <?php
@@ -153,7 +153,7 @@ $j=0;
 
                         $ARRIVAL_TIME = $row['arrival_time'];
                         $user=$row['user_id'];
-                        $name=$row['name'];
+                        $name=$row['surname'];
                         $Hour = strtotime($ARRIVAL_TIME);
                         $Hour = date("H", $Hour);
                         $month = strtotime($ARRIVAL_TIME);
@@ -209,9 +209,10 @@ $j=0;
                else {
                     $errors[] = 'There is no user in table';
                 }
-}
+
 if ($j==0) {
 $errors[] = 'There is not report today';
+}
 }
         if (isset($errors)) {
             foreach ($errors as $error) {
