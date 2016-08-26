@@ -23,15 +23,16 @@
 
     if (isset($_POST['Validate'])) {
         $passcode = $_POST['passcode'];
+        $user_name = $_POST['user_name'];
         $errors = array();
-        if (empty($passcode)) {
+        if (empty($passcode)||empty($user_name)) {
             $errors[] = 'All fields required';
         } else {
             // Connect to database
             include 'php/conn.php';
 
             // Retreive user form passcode
-            $sql_user = "SELECT * FROM users WHERE passcode = '$passcode'";
+            $sql_user = "SELECT * FROM users WHERE passcode = '$passcode'&& surname = '$user_name'";
             $stmt_user=$conn->prepare($sql_user);
             $stmt_user->bindParam(1,$passcode,PDO::PARAM_INT);
             $stmt_user->execute();
@@ -69,9 +70,10 @@
                     $ABSENT_TIME = new DateTime('12:00:00');
 
                     // Add entry in checkin table
-                    $sql_checkin = 'INSERT INTO checkins(user_id) VALUES (?)';
+                    $sql_checkin = 'INSERT INTO checkins(user_id,name) VALUES (?,?)';
                     $stmt_checkin = $conn->prepare($sql_checkin);
                     $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
+                    $stmt_checkin->bindParam(2, $name, PDO::PARAM_STR);
                     $stmt_checkin->execute();
 
                     // Display user message
@@ -113,6 +115,10 @@
                 <label class="control-label" for="textinput-1">Please enter your PASSCODE:</label>
                 <div class="controls">
                     <input name="passcode" type="text" placeholder="passcode" class="input-xlarge" />
+                </div>
+                <label class="control-label" for="textinput-1">Please enter User number:</label>
+                <div class="controls">
+                    <input name="user_name" type="text" placeholder="user_name" class="input-xlarge" />
                 </div>
                 <div class="controls">
                     <button name="Validate" class="btn btn-primary" onclick="newDoc()">VALIDATE</button>

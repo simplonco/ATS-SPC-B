@@ -13,7 +13,7 @@
             <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
             <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
             <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
-            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
+            
         </ul>
         <?php
         require 'conn.php';
@@ -24,7 +24,9 @@
 
         if ($count) {
         ?>
-
+<script>
+$(document).ready(function(){$("tr:odd").addClass("odd");});
+</script>
         <table class="table">
             <tr>
                 <td>id</td>
