@@ -10,10 +10,10 @@
             <h2>(Suivi de Présence du Collaborateur)</h2>
         </div>
         <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
-            
+            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
+            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
+            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
+            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>Se connecter</a></li>
         </ul>
         <?php
         require 'conn.php';
@@ -24,16 +24,14 @@
 
         if ($count) {
         ?>
-<script>
-$(document).ready(function(){$("tr:odd").addClass("odd");});
-</script>
+
         <table class="table">
             <tr>
-                <td>id</td>
-                <td>name</td>
-                <td>surname</td>
-                <td>email</td>
-                <td>passcode</td>
+                <td>ID</td>
+                <td>Prénom</td>
+                <td>Nom</td>
+                <td>Mail</td>
+                <td>Mot de passe</td>
             </tr>
             <?php
             $id = 1;

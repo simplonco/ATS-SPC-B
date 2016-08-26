@@ -26,7 +26,7 @@
         $user_name = $_POST['user_name'];
         $errors = array();
         if (empty($passcode)||empty($user_name)) {
-            $errors[] = 'All fields required';
+            $errors[] = 'Tous les champs sont obligatoires';
         } else {
             // Connect to database
             include 'php/conn.php';
@@ -46,7 +46,7 @@
 
             // Check if user exist
             if (!isset($user_id)) {
-                $errors[] = 'The Passcode is wrong';
+                $errors[] = 'Mot de passe incorrect';
             } else {
                 $sql_arrival_time = "SELECT arrival_time FROM checkins WHERE user_id = $user_id ORDER BY id";
                 $stmt_arrival_time = $conn->query($sql_arrival_time);
@@ -70,23 +70,22 @@
                     $ABSENT_TIME = new DateTime('12:00:00');
 
                     // Add entry in checkin table
-                    $sql_checkin = 'INSERT INTO checkins(user_id,name) VALUES (?,?)';
+                    $sql_checkin = 'INSERT INTO checkins(user_id) VALUES (?)';
                     $stmt_checkin = $conn->prepare($sql_checkin);
                     $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
-                    $stmt_checkin->bindParam(2, $name, PDO::PARAM_STR);
                     $stmt_checkin->execute();
 
                     // Display user message
                     if ($ARRIVAL_TIME > $LATE_TIME && $ARRIVAL_TIME < $ABSENT_TIME) {
-                        $success = "Welcome $name $surname but you are late for today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                        $success = "Bienvenue $name $surname mais vous êtes en retard aujourd'hui <br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                     } elseif ($ARRIVAL_TIME > $ABSENT_TIME) {
-                        $success = "Welcome $name $surname but you will be considered as absent today:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                        $success = "Bienvenue $name $surname mais vous serez considéré comme absent aujourd'hui <br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                     } else {
-                        $success = "Welcome $name $surname and Thank you:<br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
+                        $success = "Bienvenue $name $surname merci d'être à l'heure <br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                     }
 
                 } else { // $day == $current_day
-                    $success = 'You have already checked-in';
+                    $success = 'Vous avez déjà été enregistré';
                 }
             }
         }
@@ -112,16 +111,16 @@
             }
             ?>
             <div class="control-group">
-              <label class="control-label" for="textinput-1">Please enter your User name:</label>
+              <label class="control-label" for="textinput-1">Nom d'utilisateur</label>
               <div class="controls">
-                  <input name="user_name" type="text" placeholder="user_name" class="input-xlarge" />
+                  <input name="user_name" type="text" placeholder="Nom d'utilisateur" class="input-xlarge" />
               </div>
-                <label class="control-label" for="textinput-1">Please enter your PASSCODE:</label>
+                <label class="control-label" for="textinput-1">Mot de passe</label>
                 <div class="controls">
-                    <input name="passcode" type="text" placeholder="passcode" class="input-xlarge" />
+                    <input name="passcode" type="text" placeholder="Mot de passe" class="input-xlarge" />
                 </div>
                 <div class="controls">
-                    <button name="Validate" class="btn btn-primary" onclick="newDoc()">VALIDATE</button>
+                    <button name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
                 </div>
             </div>
         </form>

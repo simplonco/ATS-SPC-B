@@ -12,7 +12,7 @@
 
         $errors = array();
         if (empty($username) || empty($surname) || empty($mail)) {
-            $errors[] = 'ALL Fields requierd';
+            $errors[] = 'Tous les champs sont obligatoires';
         } else {
             include 'conn.php';
             function generateRandomString($length = 6) {
@@ -32,7 +32,7 @@
             $stmt->bindParam(3, $mail, PDO::PARAM_STR);
             $stmt->bindParam(4, $passcode, PDO::PARAM_STR);
             $stmt->execute();
-            $success="The table is added and the passcode is ";
+            $success="Le collaborateur a été enregistré et le mot de passe est ";
         }
     }
     ?>
@@ -42,10 +42,10 @@
             <h2>(Suivi de Présence du Collaborateur)</h2>
         </div>
         <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
-            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>checkin</a></li>
+            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
+            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
+            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
+            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>Se connecter</a></li>
         </ul>
         <form class="form-horizontal" action="" method="POST">
             <br />
@@ -61,25 +61,25 @@
             ?>
 
             <div class="control-group">
-                <label class="control-label" for="textinput-1">username</label>
+                <label class="control-label" for="textinput-1">Prénom</label>
                 <div class="controls">
-                    <input id="textinput-1" name="name" type="text" placeholder="username" class="input-xlarge">
+                    <input id="textinput-1" name="name" type="text" placeholder="Prénom" class="input-xlarge">
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="control-group">
-                <label class="control-label" for="textinput-1">surname</label>
+                <label class="control-label" for="textinput-1">Nom</label>
                 <div class="controls">
-                    <input id="textinput-1" name="surname" type="text" placeholder="surname" class="input-xlarge">
+                    <input id="textinput-1" name="surname" type="text" placeholder="Nom" class="input-xlarge">
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="control-group">
-                <label class="control-label" for="textinput-1">email</label>
+                <label class="control-label" for="textinput-1">Mail</label>
                 <div class="controls">
-                    <input id="textinput-1" name="mail" type="text" placeholder="mail" class="input-xlarge">
+                    <input id="textinput-1" name="mail" type="text" placeholder="Mail" class="input-xlarge">
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
             <!-- Button -->
             <div class="control-group">
                 <div class="controls">
-                    <button id="singlebutton-0" name="add-new" class="btn btn-primary">Add</button>
+                    <button id="singlebutton-0" name="add-new" class="btn btn-primary">Enregistrer</button>
                 </div>
             </div>
         </form>

@@ -10,9 +10,9 @@
             <h2>(Suivi de Présence du Collaborateur)</h2>
         </div>
         <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Dashbord</a></li>
-            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Addnew</a></li>
-            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Report</a></li>
+            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
+            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
+            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
         </ul>
         <?php
         if (isset($_POST['Validate'])) {
@@ -20,7 +20,7 @@
             $Month_in = $_POST['Month_in'];
             $errors = array();
             if (empty($user_id) || empty($Month_in)) {
-                $errors[] = 'All fields are requierd';
+                $errors[] = 'Tous les champs sont obligatoires';
             } else {
                 require 'conn.php';
 
@@ -32,13 +32,13 @@
                 $count = $stmt->rowcount();
 
                 if ($user_id==0) {
-                    $errors[] = 'The user_id is wrong';
+                    $errors[] = 'Utilisateur_id incorrect';
                 }
                 else {
                 $id = 1;$j=1;$k=1;$l=1;
-                $late = 'late time';
-                $in_time = 'in the time';
-                $absent="you considered absent";
+                $late = 'en retard';
+                $in_time = 'à l heure';
+                $absent="absent";
 
                       if ($count) {
                 ?>
@@ -48,9 +48,9 @@
                 <table class="table">
                      <tr>
                         <td></td>
-                        <td>user_id</td>
-                        <td>name</td>
-                        <td>ARRIVAL_TIME</td>
+                        <td>Utilisateur_id</td>
+                        <td>Nom</td>
+                        <td>Heure d'arrivée</td>
                      </tr>
                     <?php
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -105,7 +105,7 @@
                 <?php
                  }
                else {
-                    $errors[] = 'There is no user in table';
+                    $errors[] = 'Il n y a pas enregistrer aujourd hui';
                 }
               }
             }
@@ -132,9 +132,9 @@
 
 $id=1;
 $j=0;
-                $late = 'late time';
-                $in_time = 'in the time';
-                $absent="you considered absent";
+                $late = 'en retard';
+                $in_time = 'à lheure';
+                $absent="absent";
 
                       if ($count) {
                 ?>
@@ -144,9 +144,9 @@ $j=0;
                 <table class="table">
                      <tr>
                         <td></td>
-                        <td>user_id</td>
-                        <td>name</td>
-                        <td>ARRIVAL_TIME</td>
+                        <td>Utilisateur_id</td>
+                        <td>Nom</td>
+                        <td>Heure d'arrivée</td>
                      </tr>
                     <?php
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -207,11 +207,11 @@ $j=0;
                 <?php
                  }
                else {
-                    $errors[] = 'There is no user in table';
+                    $errors[] = 'Il n y a pas utilisateur dans le tableau';
                 }
 }
 if ($j==0) {
-$errors[] = 'There is not report today';
+//$errors[] = 'Il n y a pas enregistrer aujourd hui';
 }
         if (isset($errors)) {
             foreach ($errors as $error) {
@@ -222,18 +222,18 @@ $errors[] = 'There is not report today';
         <form class="form-horizontal" action="" method="POST">
               <div class="control-group">
                   <div class="controls">
-                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Validate</button>
+                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Valider</button>
                   </div>
               </div>
             <div class="control-group">
-                <label class="control-label" for="textinput-1">user_id</label>
+                <label class="control-label" for="textinput-1">Utilisateur_id</label>
                 <div class="controls">
-                    <input id="textinput-1" name="user_id" type="text" placeholder="user_id" class="input-xlarge">
+                    <input id="textinput-1" name="user_id" type="text" placeholder="Utilisateur_id" class="input-xlarge">
                 </div>
             </div>
             <br />
             <div class="control-group">
-  <label class="control-label" for="selectmultiple-0">Select Month</label>
+  <label class="control-label" for="selectmultiple-0">Choisissez le mois</label>
   <div class="controls">
     <select id="selectmultiple-0" name="Month_in" class="input-xlarge" multiple="multiple">
       <option value="01">01</option>
@@ -253,7 +253,7 @@ $errors[] = 'There is not report today';
 </div>
             <div class="control-group">
                 <div class="controls">
-                    <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Validate</button>
+                    <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
                 </div>
             </div>
         </form>
