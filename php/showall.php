@@ -17,14 +17,15 @@
         <?php
         if (isset($_POST['Validate'])) {
             $user_id = $_POST['user_id'];
+            $surname_s = $_POST['surname_s'];
             $Month_in = $_POST['Month_in'];
             $errors = array();
-            if (empty($user_id) || empty($Month_in)) {
+            if (empty($user_id) || empty($Month_in) || empty($surname_s)) {
                 $errors[] = 'All fields are requierd';
             } else {
                 require 'conn.php';
 
-                $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
+                $sql = "SELECT * FROM checkins WHERE user_id = '$user_id' && surname = '$surname_s'";
 
                 $stmt=$conn->prepare($sql);
 	             	$stmt->bindParam(1,$user_id,PDO::PARAM_INT);
@@ -111,11 +112,7 @@
             }
         }
 
-        if (isset($errors)) {
-            foreach ($errors as $error) {
-                echo '<div class="alert alert-danger">'.$error.'</div>';
-            }
-        }
+
         ?>
         <?php
         if (isset($_POST['Validate1'])) {
@@ -219,11 +216,18 @@ $errors[] = 'There is not report today';
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
         }
+
         ?>
         <form class="form-horizontal" action="" method="POST">
               <div class="control-group">
                   <div class="controls">
                       <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Validate</button>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <label class="control-label" for="textinput-1">surname</label>
+                  <div class="controls">
+                      <input id="textinput-1" name="surname_s" type="text" placeholder="surname" class="input-xlarge">
                   </div>
               </div>
             <div class="control-group">
