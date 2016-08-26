@@ -112,13 +112,13 @@
             }
             ?>
             <div class="control-group">
+              <label class="control-label" for="textinput-1">Please enter your User name:</label>
+              <div class="controls">
+                  <input name="user_name" type="text" placeholder="user_name" class="input-xlarge" />
+              </div>
                 <label class="control-label" for="textinput-1">Please enter your PASSCODE:</label>
                 <div class="controls">
                     <input name="passcode" type="text" placeholder="passcode" class="input-xlarge" />
-                </div>
-                <label class="control-label" for="textinput-1">Please enter User number:</label>
-                <div class="controls">
-                    <input name="user_name" type="text" placeholder="user_name" class="input-xlarge" />
                 </div>
                 <div class="controls">
                     <button name="Validate" class="btn btn-primary" onclick="newDoc()">VALIDATE</button>
