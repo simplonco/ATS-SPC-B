@@ -20,13 +20,10 @@
             $surname_s = $_POST['surname_s'];
             $Month_in = $_POST['Month_in'];
             $errors = array();
-<<<<<<< HEAD
-            if (empty($user_id) || empty($Month_in) || empty($surname_s)) {
-                $errors[] = 'All fields are requierd';
-=======
+
             if (empty($user_id) || empty($Month_in)) {
                 $errors[] = 'Tous les champs sont obligatoires';
->>>>>>> b1623225948b6de98467df1907c34ead5070123a
+
             } else {
                 require 'conn.php';
 
@@ -41,7 +38,7 @@
                     $errors[] = 'Utilisateur_id incorrect';
                 }
                 else {
-                $id = 1;$j=1;$k=1;$l=1;
+                $id = 1;$j=0;$k=1;$l=1;
                 $late = 'en retard';
                 $in_time = 'à l heure';
                 $absent="absent";
@@ -72,6 +69,8 @@
 
                         if ($month==$Month_in){
                               if ($Hour <10){
+                              $j= 1+ $j++;
+                              echo $j;
                                   echo"
                                       <tr>
                                       <td>".$id++."</td>
@@ -95,6 +94,8 @@
                                 ";
                             }
                             else {
+                              $j= 1+ $j++;
+
                             echo"
                           <tr>
                           <td>".$id++."</td>
@@ -105,12 +106,16 @@
                           </tr>
                           ";
                                 }
+
                         }
+
                  }
                 ?>
                 </table>
+
                 <?php
                  }
+
                else {
                     $errors[] = 'Il n y a pas enregistrer aujourd hui';
                 }
@@ -223,8 +228,9 @@ if ($j==0) {
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
         }
-
+echo $j;
         ?>
+
         <form class="form-horizontal" action="" method="POST">
               <div class="control-group">
                   <div class="controls">
@@ -245,9 +251,9 @@ if ($j==0) {
             </div>
             <br />
             <div class="control-group">
-  <label class="control-label" for="selectmultiple-0">Choisissez le mois</label>
-  <div class="controls">
-    <select id="selectmultiple-0" name="Month_in" class="input-xlarge" multiple="multiple">
+              <label class="control-label" for="selectbasic-0">Choisissez le mois</label>
+              <div class="controls">
+                <select id="selectbasic-0" name="Month_in" class="input-mini">
       <option value="01">01</option>
       <option value="02">02</option>
       <option value="03">03</option>

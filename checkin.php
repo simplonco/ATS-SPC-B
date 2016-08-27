@@ -121,7 +121,7 @@
               </div>
                 <label class="control-label" for="textinput-1">Mot de passe</label>
                 <div class="controls">
-                    <input name="user_name" type="text" placeholder="user_name" class="input-xlarge" />
+                    <input name="passcode" type="text" placeholder="Mot de passe" class="input-xlarge" />
                 </div>
                 <div class="controls">
                     <button name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
