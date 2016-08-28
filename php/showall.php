@@ -4,30 +4,18 @@
 <?php include '../header.inc.php'; ?>
 
 <body>
-    <div id="page">
-        <div id="page_header">
-            <h1>Projet SPC</h1>
-            <h2>(Suivi de Présence du Collaborateur)</h2>
-        </div>
-        <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
-            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
-            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
-        </ul>
+    <div id="showall-page">
         <?php
         if (isset($_POST['Validate'])) {
             $user_id = $_POST['user_id'];
-            $surname_s = $_POST['surname_s'];
             $Month_in = $_POST['Month_in'];
             $errors = array();
-
             if (empty($user_id) || empty($Month_in)) {
                 $errors[] = 'Tous les champs sont obligatoires';
-
             } else {
                 require 'conn.php';
 
-                $sql = "SELECT * FROM checkins WHERE user_id = '$user_id' && surname = '$surname_s'";
+                $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
 
                 $stmt=$conn->prepare($sql);
 	             	$stmt->bindParam(1,$user_id,PDO::PARAM_INT);
@@ -38,7 +26,7 @@
                     $errors[] = 'Utilisateur_id incorrect';
                 }
                 else {
-                $id = 1;$j=0;$k=1;$l=1;
+                $id = 1;$j=1;$k=1;$l=1;
                 $late = 'en retard';
                 $in_time = 'à l heure';
                 $absent="absent";
@@ -69,8 +57,6 @@
 
                         if ($month==$Month_in){
                               if ($Hour <10){
-                              $j= 1+ $j++;
-                              echo $j;
                                   echo"
                                       <tr>
                                       <td>".$id++."</td>
@@ -94,8 +80,6 @@
                                 ";
                             }
                             else {
-                              $j= 1+ $j++;
-
                             echo"
                           <tr>
                           <td>".$id++."</td>
@@ -106,16 +90,12 @@
                           </tr>
                           ";
                                 }
-
                         }
-
                  }
                 ?>
                 </table>
-
                 <?php
                  }
-
                else {
                     $errors[] = 'Il n y a pas enregistrer aujourd hui';
                 }
@@ -123,7 +103,11 @@
             }
         }
 
-
+        if (isset($errors)) {
+            foreach ($errors as $error) {
+                echo '<div class="alert alert-danger">'.$error.'</div>';
+            }
+        }
         ?>
         <?php
         if (isset($_POST['Validate1'])) {
@@ -228,32 +212,24 @@ if ($j==0) {
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
         }
-echo $j;
         ?>
-
         <form class="form-horizontal" action="" method="POST">
               <div class="control-group">
                   <div class="controls">
                       <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Valider</button>
-                  </div>
-              </div>
-              <div class="control-group">
-                  <label class="control-label" for="textinput-1">surname</label>
-                  <div class="controls">
-                      <input id="textinput-1" name="surname_s" type="text" placeholder="surname" class="input-xlarge">
-                  </div>
+                  </div></br></br>
               </div>
             <div class="control-group">
-                <label class="control-label" for="textinput-1">Utilisateur_id</label>
-                <div class="controls">
+                <label id="showall-label1" class="control-label" for="textinput-1">Utilisateur_id</label></br></br>
+            <div class="controls">
                     <input id="textinput-1" name="user_id" type="text" placeholder="Utilisateur_id" class="input-xlarge">
                 </div>
             </div>
             <br />
             <div class="control-group">
-              <label class="control-label" for="selectbasic-0">Choisissez le mois</label>
-              <div class="controls">
-                <select id="selectbasic-0" name="Month_in" class="input-mini">
+  <label id="showall-label2"class="control-label" for="selectmultiple-0">Choisissez le mois</label></br></br>
+  <div class="controls">
+    <select id="selectmultiple-0" name="Month_in" class="input-xlarge" multiple="multiple">
       <option value="01">01</option>
       <option value="02">02</option>
       <option value="03">03</option>
@@ -267,7 +243,7 @@ echo $j;
       <option value="11">11</option>
       <option value="12">12</option>
     </select>
-  </div>
+</div></br>
 </div>
             <div class="control-group">
                 <div class="controls">
