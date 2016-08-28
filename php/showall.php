@@ -38,7 +38,7 @@
                     $errors[] = 'Utilisateur_id incorrect';
                 }
                 else {
-                $id = 1;$j=0;$k=1;$l=1;
+                $id = 1;$j=0;$k=1;$l=0;
                 $late = 'en retard';
                 $in_time = 'à l heure';
                 $absent="absent";
@@ -69,8 +69,7 @@
 
                         if ($month==$Month_in){
                               if ($Hour <10){
-                              $j= 1+ $j++;
-                              echo $j;
+
                                   echo"
                                       <tr>
                                       <td>".$id++."</td>
@@ -82,8 +81,9 @@
                                       ";
                              }
                              elseif ($Hour<12){
-
+                              $l++;
                              echo"
+
                                 <tr>
                                 <td>".$id++."</td>
                                 <td>$user</td>
@@ -94,8 +94,7 @@
                                 ";
                             }
                             else {
-                              $j= 1+ $j++;
-
+                            $j++;
                             echo"
                           <tr>
                           <td>".$id++."</td>
@@ -115,12 +114,10 @@
 
                 <?php
                  }
-
-               else {
-                    $errors[] = 'Il n y a pas enregistrer aujourd hui';
-                }
               }
             }
+            echo "les numero des jours absent dans mois ".$Month_in." : ".$j."<br/>";
+            echo "les numero des jours en retard dans mois ".$Month_in." : ".$l;
         }
 
 
@@ -140,6 +137,8 @@
 
 $id=1;
 $j=0;
+$k=0;
+$l=0;
                 $late = 'en retard';
                 $in_time = 'à lheure';
                 $absent="absent";
@@ -171,6 +170,7 @@ $j=0;
                         $day = date('Y-m-d', $day);
                         $current_day = date('Y-m-d');
                         if ($day==$current_day){
+                          $k++;
                               if ($Hour <10){
                                   echo"
                                       <tr>
@@ -183,7 +183,7 @@ $j=0;
                                       ";
                              }
                              elseif ($Hour<12){
-
+                             $l++;
                              echo"
                                 <tr>
                                 <td>".$id++."</td>
@@ -195,6 +195,7 @@ $j=0;
                                 ";
                             }
                             else {
+                              $j++;
                             echo"
                           <tr>
                           <td>".$id++."</td>
@@ -206,29 +207,29 @@ $j=0;
                           ";
                                 }
                               }
-                                else {
-                                  $j=$j+1;
-                                }
+
                         }
 
                 ?>
                 </table>
-                <?php
-                 }
-               else {
-                    $errors[] = 'Il n y a pas utilisateur dans le tableau';
-                }
 
-if ($j==0) {
-//$errors[] = 'Il n y a pas enregistrer aujourd hui';
+                <?php
+
+
+                 }
+               if ($k==0) {
+               $errors[] = 'Il n y a pas enregistrer aujourd hui';
+                }
+                echo "nemero des absent aujourd" .$j."</br>";
+                echo "nemero des en retard aujourd" .$l;
 }
-}
+
         if (isset($errors)) {
             foreach ($errors as $error) {
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
         }
-echo $j;
+
         ?>
 
         <form class="form-horizontal" action="" method="POST">
