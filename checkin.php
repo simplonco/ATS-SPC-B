@@ -16,9 +16,6 @@
     <title>ATS App</title>
 </head>
 <body>
-    <div id="header">
-        <img id="logo" alt="accenture" src="image/logo-accenture.png">
-    </div>
     <?php
 
     if (isset($_POST['Validate'])) {
@@ -70,12 +67,9 @@
                     $ABSENT_TIME = new DateTime('12:00:00');
 
                     // Add entry in checkin table
-
-                    $sql_checkin = 'INSERT INTO checkins(user_id,surname) VALUES (?,?)';
+                    $sql_checkin = 'INSERT INTO checkins(user_id) VALUES (?)';
                     $stmt_checkin = $conn->prepare($sql_checkin);
                     $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
-                    $stmt_checkin->bindParam(2, $surname, PDO::PARAM_STR);
-
                     $stmt_checkin->execute();
 
                     // Display user message
@@ -94,7 +88,7 @@
         }
     }
     ?>
-    <div id="page">
+    <div id="checkin-page">
         <form id="checkin-form" class="form-horizontal" action="" method="POST">
             <?php
             if (isset($success)) {
@@ -103,7 +97,7 @@
                 <script>
                 setTimeout(function () {
                     window.location = "index.php";
-                }, 5000);
+                }, 9000);
                 </script>
             <?php
             }
@@ -114,7 +108,6 @@
             }
             ?>
             <div class="control-group">
-
               <label class="control-label" for="textinput-1">Nom d'utilisateur</label>
               <div class="controls">
                   <input name="user_name" type="text" placeholder="Nom d'utilisateur" class="input-xlarge" />
@@ -122,7 +115,7 @@
                 <label class="control-label" for="textinput-1">Mot de passe</label>
                 <div class="controls">
                     <input name="passcode" type="text" placeholder="Mot de passe" class="input-xlarge" />
-                </div>
+                </div></br>
                 <div class="controls">
                     <button name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
                 </div>
