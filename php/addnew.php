@@ -3,30 +3,28 @@
 
 <?php include '../header.inc.php'; ?>
 
-<body id="body-addnew">
+<body>
     <?php
     if (isset($_POST['add-new'])) {
         $username = $_POST['name'];
         $surname = $_POST['surname'];
-        $mail = $_POST['mail'];
+        $email= $mail = $_POST['mail'];
 
         $errors = array();
         if (empty($username) || empty($surname) || empty($mail)) {
             $errors[] = 'Tous les champs sont obligatoires';
         } else {
             include 'conn.php';
-            function generateRandomString($length = 6)
-            {
+            function generateRandomString($length = 6) {
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 $charactersLength = strlen($characters);
                 $randomString = '';
-                for ($i = 0; $i < $length; ++$i) {
+                for ($i = 0; $i < $length; $i++) {
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
                 }
-
                 return $randomString;
             }
-            $passcode = generateRandomString();
+            $passcode =  generateRandomString();
             $sql = 'INSERT INTO users(name,surname,mail,passcode) VALUES (?,?,?,?)';
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(1, $username, PDO::PARAM_STR);
@@ -34,17 +32,42 @@
             $stmt->bindParam(3, $mail, PDO::PARAM_STR);
             $stmt->bindParam(4, $passcode, PDO::PARAM_STR);
             $stmt->execute();
-            $success = 'Le collaborateur a été enregistré et le mot de passe est ';
+
+            $success="Le collaborateur a été enregistré et le mot de passe est ";
+            $message= " Vous êtes bien enregistré et votre mot de passe est ".$passcode;
+            //send email
+            function send_email($email,$message)
+                {
+                  require_once '../phpmailer/class.phpmailer.php';
+                  $mail = new PHPMailer();
+                  $mail->IsSMTP();
+                  $mail->SMTPDebug = 0;
+                  $mail->SMTPAuth = true;
+                  $mail->SMTPSecure = 'ssl';
+                  $mail->Host = 'smtp.gmail.com';
+                  $mail->Port = 465;
+                  $mail->AddAddress($email);
+                  $mail->Username = 'emailforaccenture@gmail.com';
+                  $mail->Password = 'ACCENTURE1';
+                  $mail->Subject = 'confirmation de enregistrement' ;
+                  $mail->MsgHTML($message);
+                  $mail->Send();
+                }
+                send_email($email,$message);
         }
     }
     ?>
-        <!--<ul class="nav nav-pills">
+    <div id="page">
+        <div id="page_header">
+            <h1>Projet SPC</h1>
+            <h2>(Suivi de Présence du Collaborateur)</h2>
+        </div>
+        <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
             <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
             <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
-            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>Se connecter</a></li>
-        </ul>-->
-        <form id="form" class="form-horizontal" action="" method="POST">
+        </ul>
+        <form class="form-horizontal" action="" method="POST">
             <br />
             <?php
             if ($success) {
@@ -56,9 +79,8 @@
                 }
             }
             ?>
-            <!-- Text input-->
+
             <div class="control-group">
-                <p><strong>Formulaire d'inscription</strong></p>
                 <label class="control-label" for="textinput-1">Prénom</label>
                 <div class="controls">
                     <input id="textinput-1" name="name" type="text" placeholder="Prénom" class="input-xlarge">
@@ -79,7 +101,8 @@
                 <div class="controls">
                     <input id="textinput-1" name="mail" type="email" placeholder="Mail" class="input-xlarge">
                 </div>
-            </div></br>
+            </div>
+
 
             <!-- Button -->
             <div class="control-group">
@@ -88,6 +111,7 @@
                 </div>
             </div>
         </form>
+    </div>
 </body>
 
 </html>

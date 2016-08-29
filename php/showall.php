@@ -4,19 +4,28 @@
 <?php include '../header.inc.php'; ?>
 
 <body>
-    <div id="showall-page">
+    <div id="page">
+        <div id="page_header">
+            <h1>Projet SPC</h1>
+            <h2>(Suivi de Présence du Collaborateur)</h2>
+        </div>
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
+            <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
+            <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
+        </ul>
         <?php
         if (isset($_POST['Validate'])) {
-            $surname_s = $_POST['surname_s'];
             $user_id = $_POST['user_id'];
             $Month_in = $_POST['Month_in'];
+            $surname_s = $_POST['surname_s'];
             $errors = array();
-            if (empty($user_id) || empty($Month_in)) {
+            if (empty($user_id) || empty($Month_in) || empty($surname_s)) {
                 $errors[] = 'Tous les champs sont obligatoires';
             } else {
                 require 'conn.php';
 
-                $sql = "SELECT * FROM checkins WHERE user_id = '$user_id' && surname = '$surname_s'";
+                $sql = "SELECT * FROM checkins WHERE user_id = '$user_id'";
 
                 $stmt=$conn->prepare($sql);
 	             	$stmt->bindParam(1,$user_id,PDO::PARAM_INT);
@@ -24,7 +33,7 @@
                 $count = $stmt->rowcount();
 
                 if ($user_id==0) {
-                    $errors[] = 'Utilisateur_id incorrect';
+                    $errors[] = 'Utilisateur_id incorrect ou le Nom incorrect';
                 }
                 else {
                 $id = 1;$j=1;$k=1;$l=1;
@@ -97,9 +106,7 @@
                 </table>
                 <?php
                  }
-               else {
-                    $errors[] = 'Il n y a pas enregistrer aujourd hui';
-                }
+
               }
             }
         }
@@ -207,39 +214,37 @@ $j=0;
 if ($j==0) {
 //$errors[] = 'Il n y a pas enregistrer aujourd hui';
 }
-}
+
         if (isset($errors)) {
             foreach ($errors as $error) {
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
         }
+      }
         ?>
         <form class="form-horizontal" action="" method="POST">
-
-             <div class="control-group">
-                 <div class="controls">
-                   <p>pour la daily raport</p>
-                     <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Valider</button>
-                 </div></br></br>
-             </div>
-             <div class="control-group">
-
-                <label class="control-label" for="textinput-1">surname</label>
-               <div class="controls">
-                    <input id="textinput-1" name="surname_s" type="text" placeholder="surname" class="input-xlarge">
+              <div class="control-group">
+                  <div class="controls">
+                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Valider</button>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <label class="control-label" for="textinput-1">Nom</label>
+                  <div class="controls">
+                      <input id="textinput-1" name="surname_s" type="text" placeholder="Nom" class="input-xlarge">
+                  </div>
+              </div>
+            <div class="control-group">
+                <label class="control-label" for="textinput-1">Utilisateur_id</label>
+                <div class="controls">
+                    <input id="textinput-1" name="user_id" type="text" placeholder="Utilisateur_id" class="input-xlarge">
                 </div>
-                </div>
-           <div class="control-group">
-               <label id="showall-label1" class="control-label" for="textinput-1">Utilisateur_id</label></br></br>
-           <div class="controls">
-                   <input id="textinput-1" name="user_id" type="text" placeholder="Utilisateur_id" class="input-xlarge">
-               </div>
-           </div>
-           <br />
-           <div class="control-group">
-           <label class="control-label" for="selectbasic-0">Choisissez le mois</label>
-           <div class="controls">
-              <select id="selectbasic-0" name="Month_in" class="input-mini">
+            </div>
+            <br />
+            <div class="control-group">
+                       <label class="control-label" for="selectbasic-0">Choisissez le mois</label>
+                       <div class="controls">
+                          <select id="selectbasic-0" name="Month_in" class="input-mini">
       <option value="01">01</option>
       <option value="02">02</option>
       <option value="03">03</option>
@@ -253,7 +258,7 @@ if ($j==0) {
       <option value="11">11</option>
       <option value="12">12</option>
     </select>
-</div></br>
+  </div>
 </div>
             <div class="control-group">
                 <div class="controls">

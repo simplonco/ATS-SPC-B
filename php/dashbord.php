@@ -4,12 +4,16 @@
 <?php include '../header.inc.php'; ?>
 
 <body>
-        <!--<ul class="nav nav-pills">
+    <div id="page">
+        <div id="page_header">
+            <h1>Projet SPC</h1>
+            <h2>(Suivi de Présence du Collaborateur)</h2>
+        </div>
+        <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
             <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
             <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
-            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>Se connecter</a></li>
-        </ul>-->
+        </ul>
         <?php
         require 'conn.php';
 
@@ -19,7 +23,9 @@
 
         if ($count) {
         ?>
-      <div id="dashbord-page">
+        <script>
+                       $(document).ready(function(){$("tr:odd").addClass("odd");});
+                       </script>
         <table class="table">
             <tr>
                 <td>ID</td>
@@ -44,12 +50,12 @@
             }
             ?>
             </table>
-       </div>
         <?php
         } else {
             // TODO: Display an error!
         }
         ?>
+    </div>
 </body>
 
 </html>

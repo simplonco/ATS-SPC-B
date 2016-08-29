@@ -1,62 +1,56 @@
-/* addnew css*/
-#form {
-    text-align: center;
-    margin-top: 100px;
+#header {
+    background: #EEE;
     width: 100%;
+    margin: 0;
+    padding: 0 0 30px;
 }
 
-/* dashbord css*/
-#dashbord-page {
-    background-color: #595959;
+#logo {
+    padding-top: 30px;
+    padding-left: 30px;
 }
 
-/* showall css*/
-#showall-page {
+#page {
     text-align: center;
-}
-#singlebutton-0 {
-    font-size: 26px;
-    background-color: green;
-}
-#showall-label1 {
-    font-size: 40px;
-    color: #333300
-}
-#textinput-1 {
-    font-size: 30px;
-    text-align: center;
-    color: grey;
-}
-#showall-label2 {
-    font-size: 40px;
-    color: #333300
-}
-#selectmultiple-0 {
-    font-size: 30px;
-    color: black;
 }
 
-/* checkin css*/
-#checkin-page {
-    text-align: center;
-}
 #checkin-form {
     font-size: 26px;
 }
+
 #checkin-form label {
     margin-top: 50px;
 }
+
 #checkin-form input {
     text-align: center;
     margin-top: 20px;
-    color: grey;
 }
+
 #checkin-form button {
     font-size: 26px;
     width: 300px;
-    margin-top: 10px;
+    margin-top: 70px;
     border-radius: 5px;
 }
+
 .alert {
     margin: 0;
+}
+
+#welcome-page {
+    margin-top: 100px;
+    text-align: center;
+}
+
+#welcome-page h1 {
+    color: rgb(39, 128, 227);
+    font-size: 64px;
+}
+
+#welcome-page p {
+    font-size: 24px;
+}
+.odd{
+ background-color: #ccc;
 }

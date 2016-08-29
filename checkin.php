@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -16,6 +17,9 @@
     <title>ATS App</title>
 </head>
 <body>
+    <div id="header">
+        <img id="logo" alt="accenture" src="image/logo-accenture.png">
+    </div>
     <?php
 
     if (isset($_POST['Validate'])) {
@@ -39,6 +43,7 @@
                 $user_id = $row_user['id'];
                 $name = $row_user['name'];
                 $surname = $row_user['surname'];
+                $email = $row_user['mail'];
             }
 
             // Check if user exist
@@ -67,9 +72,10 @@
                     $ABSENT_TIME = new DateTime('12:00:00');
 
                     // Add entry in checkin table
-                    $sql_checkin = 'INSERT INTO checkins(user_id) VALUES (?)';
+                    $sql_checkin = 'INSERT INTO checkins(user_id,surname) VALUES (?,?)';
                     $stmt_checkin = $conn->prepare($sql_checkin);
                     $stmt_checkin->bindParam(1, $user_id, PDO::PARAM_STR);
+                    $stmt_checkin->bindParam(2, $surname, PDO::PARAM_STR);
                     $stmt_checkin->execute();
 
                     // Display user message
@@ -81,14 +87,34 @@
                         $success = "Bienvenue $name $surname merci d'être à l'heure <br />".$ARRIVAL_TIME->format('Y-m-d H:i:s');
                     }
 
+      //send email
+                    function send_email($email,$success)
+                        {
+                          require_once 'phpmailer/class.phpmailer.php';
+                          $mail = new PHPMailer();
+                          $mail->IsSMTP();
+                          $mail->SMTPDebug = 0;
+                          $mail->SMTPAuth = true;
+                          $mail->SMTPSecure = 'ssl';
+                          $mail->Host = 'smtp.gmail.com';
+                          $mail->Port = 465;
+                          $mail->AddAddress($email);
+                          $mail->Username = 'emailforaccenture@gmail.com';
+                          $mail->Password = 'ACCENTURE1';
+                          $mail->Subject = 'confirmation de presence' ;
+                          $mail->MsgHTML($success);
+                          $mail->Send();
+                        }
+                        send_email($email,$success);
                 } else { // $day == $current_day
                     $success = 'Vous avez déjà été enregistré';
                 }
+
             }
         }
     }
     ?>
-    <div id="checkin-page">
+    <div id="page">
         <form id="checkin-form" class="form-horizontal" action="" method="POST">
             <?php
             if (isset($success)) {
@@ -114,8 +140,8 @@
               </div>
                 <label class="control-label" for="textinput-1">Mot de passe</label>
                 <div class="controls">
-                    <input name="passcode" type="text" placeholder="Mot de passe" class="input-xlarge" />
-                </div></br>
+                    <input name="passcode" type="Password" placeholder="Mot de passe" class="input-xlarge" />
+                </div>
                 <div class="controls">
                     <button name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
                 </div>
