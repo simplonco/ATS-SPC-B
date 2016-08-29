@@ -1,28 +1,18 @@
 /* addnew css*/
-#body-addnew {
-    background-color: pink;
-    padding-top: 30px;
-}
 #form {
     text-align: center;
     margin-top: 100px;
-    border: 1px solid blue;
     width: 100%;
-    background-color: #006666;
 }
 
 /* dashbord css*/
 #dashbord-page {
-    border: 1px solid green;
-    background-color: #999966;
+    background-color: #595959;
 }
 
 /* showall css*/
 #showall-page {
     text-align: center;
-    border: 1px solid red;
-    padding: 200px 0 200px 0;
-    background-color: #6666ff
 }
 #singlebutton-0 {
     font-size: 26px;
@@ -35,6 +25,7 @@
 #textinput-1 {
     font-size: 30px;
     text-align: center;
+    color: grey;
 }
 #showall-label2 {
     font-size: 40px;
@@ -42,12 +33,11 @@
 }
 #selectmultiple-0 {
     font-size: 30px;
+    color: black;
 }
 /* checkin css*/
 #checkin-page {
     text-align: center;
-    border: 1px solid yellow;
-    background-color: #ff5050;
 }
 #checkin-form {
     font-size: 26px;
@@ -58,6 +48,7 @@
 #checkin-form input {
     text-align: center;
     margin-top: 20px;
+    color: grey;
 }
 #checkin-form button {
     font-size: 26px;

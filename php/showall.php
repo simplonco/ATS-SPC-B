@@ -26,11 +26,7 @@
                     $errors[] = 'Utilisateur_id incorrect';
                 }
                 else {
-<<<<<<< HEAD
-                $id = 1;$j=0;$k=1;$l=0;
-=======
                 $id = 1;$j=1;$k=1;$l=1;
->>>>>>> e92c258de7aa0ad2159e48cc3a3c345dab92a7a7
                 $late = 'en retard';
                 $in_time = 'à l heure';
                 $absent="absent";
@@ -61,10 +57,6 @@
 
                         if ($month==$Month_in){
                               if ($Hour <10){
-<<<<<<< HEAD
-
-=======
->>>>>>> e92c258de7aa0ad2159e48cc3a3c345dab92a7a7
                                   echo"
                                       <tr>
                                       <td>".$id++."</td>
@@ -76,9 +68,8 @@
                                       ";
                              }
                              elseif ($Hour<12){
-                              $l++;
-                             echo"
 
+                             echo"
                                 <tr>
                                 <td>".$id++."</td>
                                 <td>$user</td>
@@ -89,10 +80,6 @@
                                 ";
                             }
                             else {
-<<<<<<< HEAD
-                            $j++;
-=======
->>>>>>> e92c258de7aa0ad2159e48cc3a3c345dab92a7a7
                             echo"
                           <tr>
                           <td>".$id++."</td>
@@ -109,16 +96,11 @@
                 </table>
                 <?php
                  }
-<<<<<<< HEAD
-=======
                else {
                     $errors[] = 'Il n y a pas enregistrer aujourd hui';
                 }
->>>>>>> e92c258de7aa0ad2159e48cc3a3c345dab92a7a7
               }
             }
-            echo "les numero des jours absent dans mois ".$Month_in." : ".$j."<br/>";
-            echo "les numero des jours en retard dans mois ".$Month_in." : ".$l;
         }
 
         if (isset($errors)) {
@@ -142,8 +124,6 @@
 
 $id=1;
 $j=0;
-$k=0;
-$l=0;
                 $late = 'en retard';
                 $in_time = 'à lheure';
                 $absent="absent";
@@ -175,7 +155,6 @@ $l=0;
                         $day = date('Y-m-d', $day);
                         $current_day = date('Y-m-d');
                         if ($day==$current_day){
-                          $k++;
                               if ($Hour <10){
                                   echo"
                                       <tr>
@@ -188,7 +167,7 @@ $l=0;
                                       ";
                              }
                              elseif ($Hour<12){
-                             $l++;
+
                              echo"
                                 <tr>
                                 <td>".$id++."</td>
@@ -200,7 +179,6 @@ $l=0;
                                 ";
                             }
                             else {
-                              $j++;
                             echo"
                           <tr>
                           <td>".$id++."</td>
@@ -212,32 +190,28 @@ $l=0;
                           ";
                                 }
                               }
-
+                                else {
+                                  $j=$j+1;
+                                }
                         }
 
                 ?>
                 </table>
-
                 <?php
-
-
                  }
-               if ($k==0) {
-               $errors[] = 'Il n y a pas enregistrer aujourd hui';
+               else {
+                    $errors[] = 'Il n y a pas utilisateur dans le tableau';
                 }
-                echo "nemero des absent aujourd" .$j."</br>";
-                echo "nemero des en retard aujourd" .$l;
-}
 
+if ($j==0) {
+//$errors[] = 'Il n y a pas enregistrer aujourd hui';
+}
+}
         if (isset($errors)) {
             foreach ($errors as $error) {
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> e92c258de7aa0ad2159e48cc3a3c345dab92a7a7
         ?>
         <form class="form-horizontal" action="" method="POST">
               <div class="control-group">

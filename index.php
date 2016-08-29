@@ -22,6 +22,7 @@
     <!-- Theme CSS -->
     <link href="css/grayscale.min.css" rel="stylesheet">
     <link href="css/grayscale.css" rel="stylesheet">
+    <!-- CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 
@@ -80,8 +81,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Projet SPC
-(Suivi de Présence du Collaborateur)</h1>
+                        <h1 class="brand-heading"><strong>Projet SPC
+(Suivi de Présence du Collaborateur)</strong></h1>
                         <p class="intro-text"><strong>Objectifs:</strong></br>Remplacer la version papier du Suivi de présence des collaborateurs par
 une version électronique<br />Automatiser et simplifier le suivi des collaborateurs en période d’inter-
 contrat (indicateurs, rapports et mail)</p>
