@@ -27,10 +27,10 @@
      <script>
      $(document).ready(function(){
         $("#welcome-page").click(function(){
-            $("#welcome-page").fadeOut(500);
+            $("#welcome-page").fadeOut(1000);
             setTimeout(function () {
                 window.location = "checkin.php";
-            }, 500);
+            }, 1000);
         });
      });
      </script>
