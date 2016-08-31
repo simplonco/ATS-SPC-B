@@ -51,7 +51,7 @@
                   $mail->Port = 465;
                   $mail->AddAddress($email);
                   $mail->Username = 'emailforaccenture@gmail.com';
-                  $mail->Password = 'ACCENTURE123';
+                  $mail->Password = 'Ask me please for password';
                   $mail->Subject = 'confirmation de enregistrement' ;
                   $mail->MsgHTML($message);
                   $mail->Send();
