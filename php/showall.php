@@ -18,6 +18,7 @@
         if (isset($_POST['Validate'])) {
             $user_id = $_POST['user_id'];
             $Month_in = $_POST['Month_in'];
+            $year_in = $_POST['year_in'];
             $surname_s = $_POST['surname_s'];
             $errors = array();
             if (empty($user_id) || empty($Month_in) || empty($surname_s)) {
@@ -55,6 +56,8 @@
                         <td>Heure d'arrivée</td>
                      </tr>
                     <?php
+
+
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                         $ARRIVAL_TIME = $row['arrival_time'];
@@ -64,6 +67,11 @@
                         $Hour = date("H", $Hour);
                         $month = strtotime($ARRIVAL_TIME);
                         $month = date("m", $month);
+                        $year = strtotime($ARRIVAL_TIME);
+                        $year = date("y", $year);
+
+
+                        if($year==$year_in){
 
                         if ($month==$Month_in){
                               if ($Hour <10){
@@ -101,6 +109,7 @@
                           ";
                                 }
                         }
+                      }
                  }
                 ?>
                 </table>
@@ -259,6 +268,21 @@ if ($j==0) {
       <option value="12">12</option>
     </select>
   </div>
+</div>
+<div class="control-group">
+           <label class="control-label" for="selectbasic-0">Choisissez l'anne</label>
+           <div class="controls">
+              <select id="selectbasic-0" name="year_in" class="input-mini">
+<option value="16">2016</option>
+<option value="15">2015</option>
+<option value="14">2014</option>
+<option value="2013">2013</option>
+<option value="2012">2012</option>
+<option value="2011">2011</option>
+<option value="2010">2010</option>
+<option value="2009">2009</option>
+</select>
+</div>
 </div>
             <div class="control-group">
                 <div class="controls">
