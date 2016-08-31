@@ -100,7 +100,7 @@
                           $mail->Port = 465;
                           $mail->AddAddress($email);
                           $mail->Username = 'emailforaccenture@gmail.com';
-                          $mail->Password = 'Ask abdulkader for password ;)';
+                          $mail->Password = 'ACCENTURE123';
                           $mail->Subject = 'confirmation de presence' ;
                           $mail->MsgHTML($success);
                           $mail->Send();
