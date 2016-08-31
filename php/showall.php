@@ -4,9 +4,12 @@
 <?php include '../header.inc.php'; ?>
 
 <body>
+  <div id="header">
+      <img id="logo" alt="accenture" src="../image/logo-accenture.png">
+  </div>
     <div id="page">
         <div id="page_header">
-            <h1>Projet SPC</h1>
+            <h1><strong>Projet SPC</strong></h1>
             <h2>(Suivi de Présence du Collaborateur)</h2>
         </div>
         <ul class="nav nav-pills">
@@ -18,8 +21,9 @@
         if (isset($_POST['Validate'])) {
             $user_id = $_POST['user_id'];
             $Month_in = $_POST['Month_in'];
+            $surname_s = $_POST['surname_s'];
             $errors = array();
-            if (empty($user_id) || empty($Month_in)) {
+            if (empty($user_id) || empty($Month_in) || empty($surname_s)) {
                 $errors[] = 'Tous les champs sont obligatoires';
             } else {
                 require 'conn.php';
@@ -32,7 +36,7 @@
                 $count = $stmt->rowcount();
 
                 if ($user_id==0) {
-                    $errors[] = 'Utilisateur_id incorrect';
+                    $errors[] = 'Utilisateur_id incorrect ou le Nom incorrect';
                 }
                 else {
                 $id = 1;$j=1;$k=1;$l=1;
@@ -105,9 +109,7 @@
                 </table>
                 <?php
                  }
-               else {
-                    $errors[] = 'Il n y a pas enregistrer aujourd hui';
-                }
+
               }
             }
         }
@@ -139,9 +141,11 @@ $j=0;
 
                       if ($count) {
                 ?>
+
                 <script>
                 $(document).ready(function(){$("tr:odd").addClass("odd");});
                 </script>
+
                 <table class="table">
                      <tr>
                         <td></td>
@@ -215,17 +219,25 @@ $j=0;
 if ($j==0) {
 //$errors[] = 'Il n y a pas enregistrer aujourd hui';
 }
-}
+
         if (isset($errors)) {
             foreach ($errors as $error) {
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
         }
+      }
         ?>
+
         <form class="form-horizontal" action="" method="POST">
               <div class="control-group">
                   <div class="controls">
-                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Valider</button>
+                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Rapport  journalier</button>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <label class="control-label" for="textinput-1">Nom</label>
+                  <div class="controls">
+                      <input id="textinput-1" name="surname_s" type="text" placeholder="Nom" class="input-xlarge">
                   </div>
               </div>
             <div class="control-group">
@@ -236,9 +248,9 @@ if ($j==0) {
             </div>
             <br />
             <div class="control-group">
-  <label class="control-label" for="selectmultiple-0">Choisissez le mois</label>
-  <div class="controls">
-    <select id="selectmultiple-0" name="Month_in" class="input-xlarge" multiple="multiple">
+                       <label class="control-label" for="selectbasic-0">Choisissez le mois</label>
+                       <div class="controls">
+                          <select id="selectbasic-0" name="Month_in" class="input-mini">
       <option value="01">01</option>
       <option value="02">02</option>
       <option value="03">03</option>
@@ -256,7 +268,7 @@ if ($j==0) {
 </div>
             <div class="control-group">
                 <div class="controls">
-                    <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
+                    <button id="singlebutton-7" name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
                 </div>
             </div>
         </form>

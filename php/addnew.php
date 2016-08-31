@@ -4,11 +4,14 @@
 <?php include '../header.inc.php'; ?>
 
 <body>
+  <div id="header">
+      <img id="logo" alt="accenture" src="../image/logo-accenture.png">
+  </div>
     <?php
     if (isset($_POST['add-new'])) {
         $username = $_POST['name'];
         $surname = $_POST['surname'];
-        $mail = $_POST['mail'];
+        $email= $mail = $_POST['mail'];
 
         $errors = array();
         if (empty($username) || empty($surname) || empty($mail)) {
@@ -32,21 +35,42 @@
             $stmt->bindParam(3, $mail, PDO::PARAM_STR);
             $stmt->bindParam(4, $passcode, PDO::PARAM_STR);
             $stmt->execute();
+
             $success="Le collaborateur a été enregistré et le mot de passe est ";
+            $message= " Vous êtes bien enregistré et votre mot de passe est ".$passcode;
+            //send email
+            function send_email($email,$message)
+                {
+                  require_once '../phpmailer/class.phpmailer.php';
+                  $mail = new PHPMailer();
+                  $mail->IsSMTP();
+                  $mail->SMTPDebug = 0;
+                  $mail->SMTPAuth = true;
+                  $mail->SMTPSecure = 'ssl';
+                  $mail->Host = 'smtp.gmail.com';
+                  $mail->Port = 465;
+                  $mail->AddAddress($email);
+                  $mail->Username = 'emailforaccenture@gmail.com';
+                  $mail->Password = 'Ask abdulkader for password ;)';
+                  $mail->Subject = 'confirmation de enregistrement' ;
+                  $mail->MsgHTML($message);
+                  $mail->Send();
+                }
+                send_email($email,$message);
         }
     }
     ?>
     <div id="page">
         <div id="page_header">
-            <h1>Projet SPC</h1>
+            <h1><strong>Projet SPC</strong></h1>
             <h2>(Suivi de Présence du Collaborateur)</h2>
         </div>
         <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
             <li role="presentation" class="active"><a href="../php/addnew.php"><span class="glyphicon glyphicon-asterisk"></span>Ajouter collaborateur</a></li>
             <li role="presentation" class="active"><a href="../php/showall.php"><span class="glyphicon glyphicon-asterisk"></span>Rapport</a></li>
-            <li role="presentation" class="active"><a href="../index.php"><span class="glyphicon glyphicon-asterisk"></span>Se connecter</a></li>
         </ul>
+        <div class = "control-group">
         <form class="form-horizontal" action="" method="POST">
             <br />
             <?php
@@ -79,7 +103,7 @@
             <div class="control-group">
                 <label class="control-label" for="textinput-1">Mail</label>
                 <div class="controls">
-                    <input id="textinput-1" name="mail" type="text" placeholder="Mail" class="input-xlarge">
+                    <input id="textinput-1" name="mail" type="email" placeholder="Mail" class="input-xlarge">
                 </div>
             </div>
 
@@ -87,10 +111,11 @@
             <!-- Button -->
             <div class="control-group">
                 <div class="controls">
-                    <button id="singlebutton-0" name="add-new" class="btn btn-primary">Enregistrer</button>
+                    <button id="singlebutton-5" name="add-new" class="btn btn-primary">Enregistrer</button>
                 </div>
             </div>
         </form>
+      </div>
     </div>
 </body>
 
