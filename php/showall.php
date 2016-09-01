@@ -4,12 +4,9 @@
 <?php include '../header.inc.php'; ?>
 
 <body>
-  <div id="header">
-      <img id="logo" alt="accenture" src="../image/logo-accenture.png">
-  </div>
     <div id="page">
         <div id="page_header">
-            <h1><strong>Projet SPC</strong></h1>
+            <h1>Projet SPC</h1>
             <h2>(Suivi de Présence du Collaborateur)</h2>
         </div>
         <ul class="nav nav-pills">
@@ -21,6 +18,7 @@
         if (isset($_POST['Validate'])) {
             $user_id = $_POST['user_id'];
             $Month_in = $_POST['Month_in'];
+            $year_in = $_POST['year_in'];
             $surname_s = $_POST['surname_s'];
             $errors = array();
             if (empty($user_id) || empty($Month_in) || empty($surname_s)) {
@@ -58,6 +56,8 @@
                         <td>Heure d'arrivée</td>
                      </tr>
                     <?php
+
+
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                         $ARRIVAL_TIME = $row['arrival_time'];
@@ -67,6 +67,11 @@
                         $Hour = date("H", $Hour);
                         $month = strtotime($ARRIVAL_TIME);
                         $month = date("m", $month);
+                        $year = strtotime($ARRIVAL_TIME);
+                        $year = date("y", $year);
+
+
+                        if($year==$year_in){
 
                         if ($month==$Month_in){
                               if ($Hour <10){
@@ -104,6 +109,7 @@
                           ";
                                 }
                         }
+                      }
                  }
                 ?>
                 </table>
@@ -141,11 +147,9 @@ $j=0;
 
                       if ($count) {
                 ?>
-
                 <script>
                 $(document).ready(function(){$("tr:odd").addClass("odd");});
                 </script>
-
                 <table class="table">
                      <tr>
                         <td></td>
@@ -227,11 +231,10 @@ if ($j==0) {
         }
       }
         ?>
-
         <form class="form-horizontal" action="" method="POST">
               <div class="control-group">
                   <div class="controls">
-                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Rapport  journalier</button>
+                      <button id="singlebutton-0" name="Validate1" class="btn btn-primary" onclick="newDoc()">Valider</button>
                   </div>
               </div>
               <div class="control-group">
@@ -266,9 +269,24 @@ if ($j==0) {
     </select>
   </div>
 </div>
+<div class="control-group">
+           <label class="control-label" for="selectbasic-0">Choisissez l'anne</label>
+           <div class="controls">
+              <select id="selectbasic-0" name="year_in" class="input-mini">
+<option value="16">2016</option>
+<option value="15">2015</option>
+<option value="14">2014</option>
+<option value="13">2013</option>
+<option value="12">2012</option>
+<option value="11">2011</option>
+<option value="10">2010</option>
+<option value="09">2009</option>
+</select>
+</div>
+</div>
             <div class="control-group">
                 <div class="controls">
-                    <button id="singlebutton-7" name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
+                    <button id="singlebutton-0" name="Validate" class="btn btn-primary" onclick="newDoc()">Valider</button>
                 </div>
             </div>
         </form>
