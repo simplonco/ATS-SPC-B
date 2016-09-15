@@ -10,7 +10,7 @@
     <div id="page">
         <div id="page_header">
             <h1><strong>Projet SPC</strong></h1>
-            <h2>(Suivi de Présence du Collaborateur)</h2>
+            <h2><i>(Suivi de Présence du Collaborateur)</i></h2>
         </div>
         <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
@@ -31,11 +31,11 @@
                        </script>
         <table class="table">
             <tr>
-                <td>ID</td>
-                <td>Prénom</td>
-                <td>Nom</td>
-                <td>Mail</td>
-                <td>Mot de passe</td>
+                <td><strong>ID</strong></td>
+                <td><strong>Prénom</strong></td>
+                <td><strong>Nom</strong></td>
+                <td><strong>Mail</strong></td>
+                <td><strong>Mot de passe</strong></td>
             </tr>
             <?php
             $id = 1;

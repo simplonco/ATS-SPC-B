@@ -2,7 +2,7 @@
 
 $host = 'localhost';
 $db_user = 'root';
-$db_password = 'root';
+$db_password = 'simplonco';
 $db_name = 'ATS_SPC';
 
 try {

@@ -6,8 +6,8 @@
 <body>
     <div id="page">
         <div id="page_header">
-            <h1>Projet SPC</h1>
-            <h2>(Suivi de Présence du Collaborateur)</h2>
+            <h1><b>Projet SPC</b></h1>
+            <h2><i>(Suivi de Présence du Collaborateur)</i></h2>
         </div>
         <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="../php/dashbord.php"><span class="glyphicon glyphicon-asterisk"></span>Tableau de bord</a></li>
