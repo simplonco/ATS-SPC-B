@@ -10,6 +10,7 @@
 
 - use index.php to run the project
 - _TODO.._
+## Click here to see the app:
 
 ## Diagrams
 
