@@ -2,7 +2,7 @@
 
 ## Authors
 
-- KALAAJI Abdulkader
+- KALAAJI Adrien
 - NIGHATU Amare
 - ABOU ALNASSER Mohamad
 
